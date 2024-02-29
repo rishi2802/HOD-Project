@@ -1,0 +1,70 @@
+<!-- dashboard.html (Updated HTML Template with Form) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome, {{ username }}</h1>
+        <form id="activity-form">
+            <h2>Academic Activities:</h2>
+            <label for="results">Results:</label>
+            <input type="number" name="results" id="results" min="0" max="10" required>
+            <label for="feedbacks">Feedbacks:</label>
+            <input type="number" name="feedbacks" id="feedbacks" min="0" max="10" required>
+            
+            <h2>Research Work:</h2>
+            <label for="national_conference">National Conference Papers:</label>
+            <input type="number" name="national_conference" id="national_conference" min="0">
+            <label for="international_conference">International Conference Papers:</label>
+            <input type="number" name="international_conference" id="international_conference" min="0">
+            <label for="national_journal">National Journal Papers:</label>
+            <input type="number" name="national_journal" id="national_journal" min="0">
+            <label for="international_journal">International Journal Papers:</label>
+            <input type="number" name="international_journal" id="international_journal" min="0">
+            
+            <h2>Project Guidance:</h2>
+            <label for="ug_projects">UG Projects:</label>
+            <input type="number" name="ug_projects" id="ug_projects" min="0">
+            <label for="pg_projects">PG Projects:</label>
+            <input type="number" name="pg_projects" id="pg_projects" min="0">
+            <label for="phd_projects">PhD Projects:</label>
+            <input type="number" name="phd_projects" id="phd_projects" min="0">
+            
+            <h2>Industry Related Activities:</h2>
+            <label for="industry_projects">Industry Projects:</label>
+            <input type="number" name="industry_projects" id="industry_projects" min="0">
+            <label for="consultancy">Consultancy:</label>
+            <input type="number" name="consultancy" id="consultancy" min="0">
+            
+            <h2>Faculty Organized Events:</h2>
+            <label for="organized_events">Total Events Organized:</label>
+            <input type="number" name="organized_events" id="organized_events" min="0">
+            
+            <h2>Faculty Attended Events:</h2>
+            <label for="attended_events">Total Events Attended:</label>
+            <input type="number" name="attended_events" id="attended_events" min="0">
+            
+            <h2>Administrative Duties:</h2>
+            <label for="administrative_duties">Administrative Duties:</label>
+            <select name="administrative_duties" id="administrative_duties">
+                <option value="hod">HOD/AHOD</option>
+                <option value="club_incharge">Club Incharge</option>
+                <option value="lab_incharge">Lab Incharge</option>
+                <option value="time_table_incharge">Time Table Incharge</option>
+                <option value="bus_incharge">Bus Incharge</option>
+                <option value="hostel_duty">Hostel Duty</option>
+                <option value="iso_iqac">ISO/IQAC</option>
+            </select>
+            <br><br>
+            <button type="submit">Submit Marks</button>
+        </form>
+        <p id="total-marks"></p>
+    </div>
+    <script src="static/script.js"></script>
+</body>
+</html>

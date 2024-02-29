@@ -25,27 +25,9 @@ print("Updated document ID:", result.upserted_id)
 """
 @app.route('/')
 def index():
-    """
-    cursor = collection.find()
+    
 
-# Iterate over the cursor to display each record
-    for document in cursor:
-        print(document)
-        new_conference = {
-            "title": "New Conference",
-            "date": "02/28/2024",
-            "organisation": "New Organisation"
-        }
-
-        # Update the document with name 'ab'
-        query = {"name": "ab"}
-        update = {"$push": {"conference": new_conference}}
-
-        #collection.update_one(query, update)
-
-        """
-
-    return render_template('Publication.html')
+    return render_template('Guidence.html')
 
 @app.route('/acasubmit', methods=['POST'])
 def acasubmit():
@@ -80,6 +62,25 @@ def pubsubmit():
     val= worksheet[2][5].value
     worksheet.cell(row=2, column=5, value=val+1)
     workbook.save("teacher.xlsx")
+    return render_template("login.html")
+
+@app.route('/guisubmit', methods=['POST'])
+def guisubmit():
+    selected_option = request.form['guidanceType']
+    print(selected_option)
+    title = request.form.get('projectTitle')
+    date=request.form.get('year')
+    pub = {"type": selected_option, "title":title ,"year": date}
+    # Update the document
+    existing_doc = collection.find_one(filter)
+        # If "projects" field exists, push the new project
+    if "pub" in existing_doc:
+            collection.update_one(filter, {"$addToSet": {"guidance": pub}})
+        # If "projects" field doesn't exist, create it with the new project
+    else:
+            collection.update_one(filter, {"$set": {"guidance": [pub]}}, upsert=True)
+    val= worksheet[2][5].value=10
+    
     return render_template("login.html")
     
 

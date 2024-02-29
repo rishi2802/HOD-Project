@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unique Style Form</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
+}
+
+.container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+select,
+input[type="text"],
+input[type="date"],
+button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.error {
+    color: red;
+    font-size: 0.8em;
+}
+
+button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+.add-publisher {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.publisher-container {
+    margin-bottom: 10px;
+}
+
+.remove-publisher {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 4px 8px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Publication Form</h2>
+    <form id="publicationForm" action="#" method="post">
+        <div>
+            <label for="publicationType">Publication Type:</label>
+            <select id="publicationType" name="publicationType">
+                <option value="nationalJournal">National Journal</option>
+                <option value="internationalJournal">International Journal</option>
+                <option value="internationalConference">International Conference</option>
+                <option value="nationalConference">National Conference</option>
+            </select>
+        </div>
+        <div id="publisherFields">
+            <!-- Publisher input fields will be added dynamically -->
+        </div>
+        <button type="button" class="add-publisher" id="addPublisher">Add Publisher</button>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<script>
+document.getElementById('publicationForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    var publicationType = document.getElementById('publicationType').value;
+    var publisherContainers = document.querySelectorAll('.publisher-container');
+    var publishers = [];
+
+    publisherContainers.forEach(function(container) {
+        var name = container.querySelector('.publisherName').value;
+        var title = container.querySelector('.title').value;
+        var date = container.querySelector('.date').value;
+        publishers.push({ name: name, title: title, date: date });
+    });
+
+    console.log('Publication Type:', publicationType);
+    console.log('Publishers:', publishers);
+});
+
+document.getElementById('addPublisher').addEventListener('click', function() {
+    var publisherFields = document.getElementById('publisherFields');
+
+    var publisherContainer = document.createElement('div');
+    publisherContainer.className = 'publisher-container';
+
+    var nameInput = document.createElement('input');
+    nameInput.type = 'text';
+    nameInput.className = 'publisherName';
+    nameInput.placeholder = 'Publisher Name';
+    publisherContainer.appendChild(nameInput);
+
+    var titleInput = document.createElement('input');
+    titleInput.type = 'text';
+    titleInput.className = 'title';
+    titleInput.placeholder = 'Title';
+    publisherContainer.appendChild(titleInput);
+
+    var dateInput = document.createElement('input');
+    dateInput.type = 'date';
+    dateInput.className = 'date';
+    dateInput.placeholder = 'Date';
+    publisherContainer.appendChild(dateInput);
+
+    var removeButton = document.createElement('button');
+    removeButton.type = 'button';
+    removeButton.className = 'remove-publisher';
+    removeButton.textContent = 'Remove';
+    removeButton.addEventListener('click', function() {
+        publisherContainer.remove();
+    });
+    publisherContainer.appendChild(removeButton);
+
+    publisherFields.appendChild(publisherContainer);
+});
+</script>
+
+</body>
+</html>

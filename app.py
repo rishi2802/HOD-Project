@@ -7,7 +7,7 @@ client = MongoClient('mongodb://localhost:27017/')
 
 # Access or create a database
 db = client['Credit']  
-collection = db['score']  
+collection = db['Scores']  
 import openpyxl
 workbook = openpyxl.load_workbook("teacher.xlsx")
 worksheet = workbook.active
@@ -18,32 +18,14 @@ document = {"name": "abi"}
 
 # Upsert the document into the collection
 result = collection.update_one(filter, {"$set": document}, upsert=True)
-filter = {"name": "abi"}
+"""
 
-# Define the update operation to set the result field to 85
-update = {"$set": {"result": 85}}
-
-# Upsert the document into the collection
-result = collection.update_one(filter, update, upsert=True)
-
-# Print the inserted document's ID
-print("Inserted document ID:", result.upserted_id)
-project = {"title": "abc", "org": "xyz", "date": "22/1"}
-
-# Update the document
-existing_doc = collection.find_one(filter)
-
-
-    # If "projects" field exists, push the new project
-if "projects" in existing_doc:
-        collection.update_one(filter, {"$push": {"projects": project}})
-    # If "projects" field doesn't exist, create it with the new project
-else:
-        collection.update_one(filter, {"$set": {"projects": [project]}}, upsert=True)
 # Print the updated document's ID
 print("Updated document ID:", result.upserted_id)
+"""
 @app.route('/')
 def index():
+    """
     cursor = collection.find()
 
 # Iterate over the cursor to display each record
@@ -59,7 +41,6 @@ def index():
         query = {"name": "ab"}
         update = {"$push": {"conference": new_conference}}
 
-        # Update the document
         #collection.update_one(query, update)
 
         print("Conference added successfully.")
@@ -75,8 +56,9 @@ def index():
             worksheet.cell(row=2, column=result_column_index, value=new_result)
             workbook.save("teacher.xlsx")
         add_result_for_name("Fail")
+        """
 
-    return render_template('login.html')
+    return render_template('result.html')
 
 @app.route('/acasubmit', methods=['POST'])
 def acasubmit():
@@ -85,6 +67,28 @@ def acasubmit():
     worksheet.cell(row=2, column=3, value=res)
     worksheet.cell(row=2, column=4, value=fee)
     workbook.save("teacher.xlsx")
+    # Define the update operation to set the result field to 85
+    update = {"$set": {"result": res}}
+    collection.update_one(filter, update, upsert=True)
+    update = {"$set": {"feedback": fee}}
+    collection.update_one(filter, update, upsert=True)
+    return render_template('result.html')
+
+@app.route('/pubsubmit', methods=['POST'])
+def pubsubmit():
+    project = {"type": , "title": ,"publisher":, "date": }
+
+    # Update the document
+    existing_doc = collection.find_one(filter)
+
+
+        # If "projects" field exists, push the new project
+    if "projects" in existing_doc:
+            collection.update_one(filter, {"$push": {"projects": project}})
+        # If "projects" field doesn't exist, create it with the new project
+    else:
+            collection.update_one(filter, {"$set": {"projects": [project]}}, upsert=True)
+
 
 @app.route('/dashboard', methods=['POST'])
 def dashboard():

@@ -1,4 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
 
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+}
 
 .carousel-section {
     text-align: center;
@@ -6,10 +12,11 @@
     justify-items: center;
     width: 100%; 
     margin: 0; 
-    background-color: #fff;
+    
     padding: 4px;
-    border-radius: 8px;
+    /* border-radius: 8px; */
     padding-top: 90px;
+    background: linear-gradient(to bottom, #3498db, #7f8c8d);
 }
 
 .card-container {
@@ -26,6 +33,8 @@
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
     width: 300px;
     height: 200px;
+    background-color: #fff;
+    border-radius: 8px;
 }
 
 .card:hover {
@@ -33,12 +42,12 @@
     box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.2);
 }
 .card-body {
-    display: flex;
+display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-  }
+}
 
 .card h3 {
     color: black;
@@ -46,12 +55,78 @@
 
 .navbar {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    transform: perspective(500px) rotateX(2deg);
+  
   }
 
   .card img {
     max-width: 100%;
-    max-height: 150px; /* Adjust the height as needed */
+    max-height: 150px; 
     object-fit: cover;
+  }
+
+  .botao {
+    width: 125px;
+    height: 45px;
+    border-radius: 20px;
+    border: none;
+    box-shadow: 1px 1px rgba(107, 221, 215, 0.37);
+    padding: 5px 10px;
+    background: rgb(47,93,197);
+    background: linear-gradient(160deg, rgba(47,93,197,1) 0%, rgba(46,86,194,1) 5%, rgba(47,93,197,1) 11%, rgba(59,190,230,1) 57%, rgba(0,212,255,1) 71%);
+    color: #fff;
+    font-family: Roboto, sans-serif;
+    font-weight: 505;
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+    filter: drop-shadow(0 0 10px rgba(59, 190, 230, 0.568));
+    transition: .5s linear;
+  }
+  
+  .botao .mysvg {
+    display: none;
+  }
+  
+  .botao:hover {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    transition: .5s linear;
+  }
+  
+  .botao:hover .texto {
+    display: none;
+  }
+  
+  .botao:hover .mysvg {
+    display: inline;
+  }
+  
+  .botao:hover::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    width: 100%;
+    height: 100%;
+    border: 3.5px solid transparent;
+    border-top: 3.5px solid #fff;
+    border-right: 3.5px solid #fff;
+    border-radius: 50%;
+    animation: animateC 2s linear infinite;
+  }
+  
+  @keyframes animateC {
+    0% {
+      transform: rotate(0deg);
+    }
+  
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .butt{
+    padding-top: 50px;
+    padding-bottom:  46px;
   }

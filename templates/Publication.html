@@ -84,82 +84,32 @@ button[type="submit"]:hover {
 </style>
 </head>
 <body>
-
-<div class="container">
-    <h2>Publication Form</h2>
-    <form id="publicationForm" action="#" method="post">
-        <div>
-            <label for="publicationType">Publication Type:</label>
-            <select id="publicationType" name="publicationType">
-                <option value="nationalJournal">National Journal</option>
-                <option value="internationalJournal">International Journal</option>
-                <option value="internationalConference">International Conference</option>
-                <option value="nationalConference">National Conference</option>
-            </select>
-        </div>
-        <div id="publisherFields">
-            <!-- Publisher input fields will be added dynamically -->
-        </div>
-        <button type="button" class="add-publisher" id="addPublisher">Add Publisher</button>
-        <button type="submit">Submit</button>
-    </form>
-</div>
-
-<script>
-document.getElementById('publicationForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    var publicationType = document.getElementById('publicationType').value;
-    var publisherContainers = document.querySelectorAll('.publisher-container');
-    var publishers = [];
-
-    publisherContainers.forEach(function(container) {
-        var name = container.querySelector('.publisherName').value;
-        var title = container.querySelector('.title').value;
-        var date = container.querySelector('.date').value;
-        publishers.push({ name: name, title: title, date: date });
-    });
-
-    console.log('Publication Type:', publicationType);
-    console.log('Publishers:', publishers);
-});
-
-document.getElementById('addPublisher').addEventListener('click', function() {
-    var publisherFields = document.getElementById('publisherFields');
-
-    var publisherContainer = document.createElement('div');
-    publisherContainer.className = 'publisher-container';
-
-    var nameInput = document.createElement('input');
-    nameInput.type = 'text';
-    nameInput.className = 'publisherName';
-    nameInput.placeholder = 'Publisher Name';
-    publisherContainer.appendChild(nameInput);
-
-    var titleInput = document.createElement('input');
-    titleInput.type = 'text';
-    titleInput.className = 'title';
-    titleInput.placeholder = 'Title';
-    publisherContainer.appendChild(titleInput);
-
-    var dateInput = document.createElement('input');
-    dateInput.type = 'date';
-    dateInput.className = 'date';
-    dateInput.placeholder = 'Date';
-    publisherContainer.appendChild(dateInput);
-
-    var removeButton = document.createElement('button');
-    removeButton.type = 'button';
-    removeButton.className = 'remove-publisher';
-    removeButton.textContent = 'Remove';
-    removeButton.addEventListener('click', function() {
-        publisherContainer.remove();
-    });
-    publisherContainer.appendChild(removeButton);
-
-    publisherFields.appendChild(publisherContainer);
-});
-</script>
-
+    <div class="container">
+        <h2>Publication Form</h2>
+        <form action="/pubsubmit" method="POST">
+            <div>
+                <label for="publicationType">Publication Type:</label>
+                <select id="publicationType" name="publicationType">
+                    <option value="nationalJournal">National Journal</option>
+                    <option value="internationalJournal">International Journal</option>
+                    <option value="internationalConference">International Conference</option>
+                    <option value="nationalConference">National Conference</option>
+                </select>
+            </div>
+            <div>
+                <label for="publisherName">Publisher Name:</label>
+                <input type="text" id="publisherName" name="publisherName" placeholder="Publisher Name">
+            </div>
+            <div>
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" placeholder="Title">
+            </div>
+            <div>
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date">
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
 </body>
 </html>

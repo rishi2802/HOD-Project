@@ -45,7 +45,7 @@ def index():
 
         """
 
-    return render_template('result.html')
+    return render_template('Publication.html')
 
 @app.route('/acasubmit', methods=['POST'])
 def acasubmit():
@@ -63,19 +63,25 @@ def acasubmit():
 
 @app.route('/pubsubmit', methods=['POST'])
 def pubsubmit():
-    pub = {"type": , "title": ,"publisher":, "date": }
-
+    selected_option = request.form['publicationType']
+    print(selected_option)
+    publisherName = request.form.get('publisherName')
+    title = request.form.get('title')
+    date=request.form.get('date')
+    pub = {"type": selected_option, "title":title ,"publisher":publisherName, "date": date}
     # Update the document
     existing_doc = collection.find_one(filter)
-
-
         # If "projects" field exists, push the new project
     if "pub" in existing_doc:
             collection.update_one(filter, {"$push": {"projects": pub}})
         # If "projects" field doesn't exist, create it with the new project
     else:
             collection.update_one(filter, {"$set": {"projects": [pub]}}, upsert=True)
-
+    val= worksheet[2][5].value
+    worksheet.cell(row=2, column=5, value=val+1)
+    workbook.save("teacher.xlsx")
+    return render_template("login.html")
+    
 
 @app.route('/dashboard', methods=['POST'])
 def dashboard():

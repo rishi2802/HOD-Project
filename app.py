@@ -1,12 +1,90 @@
 # app.py (Flask Backend)
 from flask import Flask, render_template, request, jsonify
 import csv
-
+from pymongo import MongoClient
 app = Flask(__name__)
+client = MongoClient('mongodb://localhost:27017/') 
 
+# Access or create a database
+db = client['Credit']  
+collection = db['score']  
+import openpyxl
+workbook = openpyxl.load_workbook("teacher.xlsx")
+worksheet = workbook.active
+filter = {"name": "abi"}
+
+# Create a replacement document
+document = {"name": "abi"}
+
+# Upsert the document into the collection
+result = collection.update_one(filter, {"$set": document}, upsert=True)
+filter = {"name": "abi"}
+
+# Define the update operation to set the result field to 85
+update = {"$set": {"result": 85}}
+
+# Upsert the document into the collection
+result = collection.update_one(filter, update, upsert=True)
+
+# Print the inserted document's ID
+print("Inserted document ID:", result.upserted_id)
+project = {"title": "abc", "org": "xyz", "date": "22/1"}
+
+# Update the document
+existing_doc = collection.find_one(filter)
+
+
+    # If "projects" field exists, push the new project
+if "projects" in existing_doc:
+        collection.update_one(filter, {"$push": {"projects": project}})
+    # If "projects" field doesn't exist, create it with the new project
+else:
+        collection.update_one(filter, {"$set": {"projects": [project]}}, upsert=True)
+# Print the updated document's ID
+print("Updated document ID:", result.upserted_id)
 @app.route('/')
 def index():
+    cursor = collection.find()
+
+# Iterate over the cursor to display each record
+    for document in cursor:
+        print(document)
+        new_conference = {
+            "title": "New Conference",
+            "date": "02/28/2024",
+            "organisation": "New Organisation"
+        }
+
+        # Update the document with name 'ab'
+        query = {"name": "ab"}
+        update = {"$push": {"conference": new_conference}}
+
+        # Update the document
+        #collection.update_one(query, update)
+
+        print("Conference added successfully.")
+        
+
+        def add_result_for_name(new_result):
+            
+            
+            # Find the column indices for the "Name" and "Result" columns
+            
+            result_column_index = 3
+        
+            worksheet.cell(row=2, column=result_column_index, value=new_result)
+            workbook.save("teacher.xlsx")
+        add_result_for_name("Fail")
+
     return render_template('login.html')
+
+@app.route('/acasubmit', methods=['POST'])
+def acasubmit():
+    res = request.form.get('res')
+    fee = request.form.get('fee')
+    worksheet.cell(row=2, column=3, value=res)
+    worksheet.cell(row=2, column=4, value=fee)
+    workbook.save("teacher.xlsx")
 
 @app.route('/dashboard', methods=['POST'])
 def dashboard():

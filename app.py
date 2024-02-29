@@ -13,8 +13,9 @@ def dashboard():
     # Check login credentials (dummy authentication)
     username = request.form['username']
     password = request.form['password']
+    hello = 'rishi'
     if username == 'sunu' and password == 'admin':
-        return render_template('dashboard.html', username=username)
+        return render_template('dashboard.html',hello = hello)
     else:
         return render_template('login.html', message='Invalid credentials')
 

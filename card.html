@@ -4,94 +4,28 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Academic Card Layout</title>
-<link rel="stylesheet" href="styles.css">
-<style>
-.navbar {
-  background-color: #007bff;
-  padding: 10px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.navbar-brand {
-  color: #fff;
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.navbar-menu {
-  display: flex;
-}
-
-.navbar-menu ul {
-  display: flex;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-.navbar-menu ul li {
-  margin-left: 20px;
-}
-
-.navbar-menu ul li a {
-  color: #fff;
-  text-decoration: none;
-}
-
-.navbar-toggle {
-  display: none;
-  color: #fff;
-  font-size: 24px;
-  cursor: pointer;
-}
-
-@media only screen and (max-width: 768px) {
-  .navbar-menu {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    background-color: #007bff;
-    padding: 10px;
-    width: 100%;
-  }
-
-  .navbar-menu.show {
-    display: flex;
-  }
-
-  .navbar-menu ul li {
-    margin: 10px 0;
-  }
-
-  .navbar-toggle {
-    display: block;
-  }
-}
-</style>
+<link rel="stylesheet" href="card-styles.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"  rel="stylesheet" />
 </head>
 <body>
+    
 
-<div class="navbar">
-  <div class="navbar-brand">Your University Name</div>
-  <div class="navbar-menu" id="navbarMenu">
-    <ul>
-      <li><a href="#">Academic Marks</a></li>
-      <li><a href="#">Research Marks</a></li>
-      <li><a href="#">Project Guidance Marks</a></li>
-      <li><a href="#">Industry Related Marks</a></li>
-      <li><a href="#">Faculty Organized Events Marks</a></li>
-      <li><a href="#">Faculty Attended Events Marks</a></li>
-      <li><a href="#">Administrative Marks</a></li>
-      <li><a href="#">Total Marks</a></li>
-    </ul>
-  </div>
-  <button class="navbar-toggle" onclick="toggleMenu()">☰</button>
-</div>
+    
 
+    <nav class="navbar bg-blue-500 border-gray-200 dark:bg-gray-900">
+        <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
+            <a href="https://flowbite.com" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" />
+                <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">Faculty Apraisal Portal</span>
+            </a>
+            <div class="flex items-center space-x-6 rtl:space-x-reverse">
+                <a href="#" class="text-sm text-white hover:underline">Logout</a>
+            </div>
+        </div>
+    </nav>
+    
+
+  
 <div class="carousel-section">
   <div class="card-container" id="cardContainer">
     <!-- Cards will be dynamically added here -->
@@ -99,10 +33,99 @@
 </div>
 
 <script>
-function toggleMenu() {
-  const navbarMenu = document.getElementById('navbarMenu');
-  navbarMenu.classList.toggle('show');
-}
+document.addEventListener("DOMContentLoaded", function() {
+  // Sample data
+  const data = {
+    results: 85,
+    feedbacks: 15,
+    national_conference: 2,
+    international_conference: 1,
+    national_journal: 1,
+    international_journal: 2,
+    ug_projects: 3,
+    pg_projects: 2,
+    phd_projects: 1,
+    industry_projects: 1,
+    consultancy: 2,
+    organized_events: 4,
+    attended_events: 3,
+    administrative_duties: 'hod'
+  };
+
+  // Calculations
+  const academic_marks = parseInt(data['results']) + parseInt(data['feedbacks']);
+  const research_marks = (parseInt(data['national_conference']) * 2) + (parseInt(data['international_conference']) * 3) +
+                         (parseInt(data['national_journal']) * 4) + (parseInt(data['international_journal']) * 6);
+  const project_guidance_marks = (parseInt(data['ug_projects']) * 2) + (parseInt(data['pg_projects']) * 4) +
+                                 (parseInt(data['phd_projects']) * 6);
+  const industry_related_marks = (parseInt(data['industry_projects']) * 4) + (parseInt(data['consultancy']) * 4);
+  const faculty_organized_events_marks = parseInt(data['organized_events']) * 3;
+  const faculty_attended_events_marks = parseInt(data['attended_events']) * 4;
+
+  let administrative_marks = 0;
+  if (['hod', 'club_incharge', 'lab_incharge', 'time_table_incharge', 'bus_incharge',
+      'hostel_duty', 'iso_iqac'].includes(data['administrative_duties'])) {
+    administrative_marks = 5;
+  }
+
+  const total_marks = academic_marks + research_marks + project_guidance_marks + industry_related_marks +
+                      faculty_organized_events_marks + faculty_attended_events_marks + administrative_marks;
+
+  // Creating card HTML for each category
+  const cardContainer = document.getElementById('cardContainer');
+  const cardHTML = `
+    <div class="card">
+      <div class="card-body">
+        <img src="assests/performance.png" alt="Academic Marks Image">
+        <h3>Academic Marks: ${academic_marks}</h3>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <img src="assests/research.png" alt="Research Marks Image">
+        <h3>Research Marks: ${research_marks}</h3>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <img src="assests/guide.png" alt="Project Guidance Marks Image">
+        <h3>Project Guidance Marks: ${project_guidance_marks}</h3>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <img src="assests/industry.png" alt="Industry Related Marks Image">
+        <h3>Industry Related Marks: ${industry_related_marks}</h3>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <img src="assests/events.png" alt="Faculty Organized Events Marks Image">
+        <h3>Faculty Organized Events Marks: ${faculty_organized_events_marks}</h3>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <img src="assests/learning.png" alt="Faculty Attended Events Marks Image">
+        <h3>Faculty Attended Events Marks: ${faculty_attended_events_marks}</h3>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <img src="assests/admin.png" alt="Administrative Marks Image">
+        <h3>Administrative Marks: ${administrative_marks}</h3>
+      </div>
+    </div>
+    <div class="card">
+        <a href="faculty_organized_events_marks_page.html" class="card">
+      <div class="card-body">
+        <img src="assests/total.png" alt="Total Marks Image">
+        <h3>Total Marks: ${total_marks}</h3>
+      </div>
+    </div>
+  `;
+  cardContainer.innerHTML = cardHTML;
+});
 </script>
 
 </body>

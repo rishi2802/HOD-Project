@@ -43,19 +43,6 @@ def index():
 
         #collection.update_one(query, update)
 
-        print("Conference added successfully.")
-        
-
-        def add_result_for_name(new_result):
-            
-            
-            # Find the column indices for the "Name" and "Result" columns
-            
-            result_column_index = 3
-        
-            worksheet.cell(row=2, column=result_column_index, value=new_result)
-            workbook.save("teacher.xlsx")
-        add_result_for_name("Fail")
         """
 
     return render_template('result.html')
@@ -76,18 +63,18 @@ def acasubmit():
 
 @app.route('/pubsubmit', methods=['POST'])
 def pubsubmit():
-    project = {"type": , "title": ,"publisher":, "date": }
+    pub = {"type": , "title": ,"publisher":, "date": }
 
     # Update the document
     existing_doc = collection.find_one(filter)
 
 
         # If "projects" field exists, push the new project
-    if "projects" in existing_doc:
-            collection.update_one(filter, {"$push": {"projects": project}})
+    if "pub" in existing_doc:
+            collection.update_one(filter, {"$push": {"projects": pub}})
         # If "projects" field doesn't exist, create it with the new project
     else:
-            collection.update_one(filter, {"$set": {"projects": [project]}}, upsert=True)
+            collection.update_one(filter, {"$set": {"projects": [pub]}}, upsert=True)
 
 
 @app.route('/dashboard', methods=['POST'])

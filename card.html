@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Academic Card Layout</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.navbar {
+  background-color: #007bff;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-brand {
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.navbar-menu {
+  display: flex;
+}
+
+.navbar-menu ul {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-menu ul li {
+  margin-left: 20px;
+}
+
+.navbar-menu ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.navbar-toggle {
+  display: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+  .navbar-menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    background-color: #007bff;
+    padding: 10px;
+    width: 100%;
+  }
+
+  .navbar-menu.show {
+    display: flex;
+  }
+
+  .navbar-menu ul li {
+    margin: 10px 0;
+  }
+
+  .navbar-toggle {
+    display: block;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="navbar">
+  <div class="navbar-brand">Your University Name</div>
+  <div class="navbar-menu" id="navbarMenu">
+    <ul>
+      <li><a href="#">Academic Marks</a></li>
+      <li><a href="#">Research Marks</a></li>
+      <li><a href="#">Project Guidance Marks</a></li>
+      <li><a href="#">Industry Related Marks</a></li>
+      <li><a href="#">Faculty Organized Events Marks</a></li>
+      <li><a href="#">Faculty Attended Events Marks</a></li>
+      <li><a href="#">Administrative Marks</a></li>
+      <li><a href="#">Total Marks</a></li>
+    </ul>
+  </div>
+  <button class="navbar-toggle" onclick="toggleMenu()">☰</button>
+</div>
+
+<div class="carousel-section">
+  <div class="card-container" id="cardContainer">
+    <!-- Cards will be dynamically added here -->
+  </div>
+</div>
+
+<script>
+function toggleMenu() {
+  const navbarMenu = document.getElementById('navbarMenu');
+  navbarMenu.classList.toggle('show');
+}
+</script>
+
+</body>
+</html>

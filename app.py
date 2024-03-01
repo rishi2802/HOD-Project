@@ -27,7 +27,7 @@ print("Updated document ID:", result.upserted_id)
 def index():
     
 
-    return render_template('Guidence.html')
+    return render_template('./Publication.html')
 
 @app.route('/acasubmit', methods=['POST'])
 def acasubmit():
@@ -54,14 +54,18 @@ def pubsubmit():
     # Update the document
     existing_doc = collection.find_one(filter)
         # If "projects" field exists, push the new project
-    if "pub" in existing_doc:
+    if "projects" in existing_doc:
             collection.update_one(filter, {"$push": {"projects": pub}})
         # If "projects" field doesn't exist, create it with the new project
     else:
             collection.update_one(filter, {"$set": {"projects": [pub]}}, upsert=True)
-    val= worksheet[2][5].value
-    worksheet.cell(row=2, column=5, value=val+1)
-    workbook.save("teacher.xlsx")
+    
+    if(selected_option=="nationalJournal"):
+        val= worksheet[2][6].value
+        val=val+1
+        worksheet.cell(row=2, column=7, value=val)   
+        workbook.save("teacher.xlsx")
+        
     return render_template("login.html")
 
 @app.route('/guisubmit', methods=['POST'])
@@ -74,12 +78,15 @@ def guisubmit():
     # Update the document
     existing_doc = collection.find_one(filter)
         # If "projects" field exists, push the new project
-    if "pub" in existing_doc:
+    if "guidance" in existing_doc:
             collection.update_one(filter, {"$addToSet": {"guidance": pub}})
         # If "projects" field doesn't exist, create it with the new project
     else:
             collection.update_one(filter, {"$set": {"guidance": [pub]}}, upsert=True)
-    val= worksheet[2][5].value=10
+    val=worksheet[2][5].value
+    worksheet.cell(row=2, column=5, value=val+1)
+    workbook.save("teacher.xlsx")
+    print(worksheet[2][5].value)
     
     return render_template("login.html")
     

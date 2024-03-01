@@ -130,3 +130,13 @@ display: flex;
     padding-top: 50px;
     padding-bottom:  46px;
   }
+
+  h1 {
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    text-align: left;
+    margin-top: 20px;
+    align-items: right;
+    font-weight: bolder;
+
+  }

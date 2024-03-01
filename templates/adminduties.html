@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Administrative duties</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
+}
+
+.container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+select,
+input[type="text"],
+input[type="date"],
+button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.error {
+    color: red;
+    font-size: 0.8em;
+}
+
+button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+#HODAHODFields,
+#clubLabFields,
+#busInchargeFields,
+#hostelDutyFields,
+#ISOFields,
+#IQACFields {
+    display: none;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Administrative duties</h2>
+    <form id="dutiesForm" action="/dutiessubmit" method="POST">
+        <div>
+            <label for="dutyType">Duty Type:</label><br>
+            <select id="dutyType" name="dutyType" onchange="showFields()">
+                <option value="">Select Duty Type</option>
+                <option value="HODAHOD">HOD/A.HOD</option>
+                <option value="clubLab">Club Incharge/Lab Incharge</option>
+                <option value="busIncharge">Bus Incharge</option>
+                <option value="hostelDuty">Hostel Duty</option>
+                <option value="ISO">ISO</option>
+                <option value="IQAC">IQAC</option>
+            </select>
+        </div>
+        <div id="HODAHODFields">
+            <label for="HODAHODTitle">Title:</label>
+            <input type="text" id="HODAHODTitle" name="HODAHODTitle" placeholder="Enter Title">
+            <label for="HODAHODDate">Date:</label>
+            <input type="date" id="HODAHODDate" name="HODAHODDate">
+        </div>
+        <div id="clubLabFields">
+            <label for="clubLabTitle">Title:</label>
+            <input type="text" id="clubLabTitle" name="clubLabTitle" placeholder="Enter Title">
+            <label for="clubLabDate">Date:</label>
+            <input type="date" id="clubLabDate" name="clubLabDate">
+        </div>
+        <div id="busInchargeFields">
+            <label for="busInchargeTitle">Title:</label>
+            <input type="text" id="busInchargeTitle" name="busInchargeTitle" placeholder="Enter Title">
+            <label for="busInchargeDate">Date:</label>
+            <input type="date" id="busInchargeDate" name="busInchargeDate">
+        </div>
+        <div id="hostelDutyFields">
+            <label for="hostelDutyTitle">Title:</label>
+            <input type="text" id="hostelDutyTitle" name="hostelDutyTitle" placeholder="Enter Title">
+            <label for="hostelDutyDate">Date:</label>
+            <input type="date" id="hostelDutyDate" name="hostelDutyDate">
+        </div>
+        <div id="ISOFields">
+            <label for="ISOTitle">Title:</label>
+            <input type="text" id="ISOTitle" name="ISOTitle" placeholder="Enter Title">
+            <label for="ISODate">Date:</label>
+            <input type="date" id="ISODate" name="ISODate">
+        </div>
+        <div id="IQACFields">
+            <label for="IQACTitle">Title:</label>
+            <input type="text" id="IQACTitle" name="IQACTitle" placeholder="Enter Title">
+            <label for="IQACDate">Date:</label>
+            <input type="date" id="IQACDate" name="IQACDate">
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<script>
+function showFields() {
+    var dutyType = document.getElementById("dutyType").value;
+    var HODAHODFields = document.getElementById("HODAHODFields");
+    var clubLabFields = document.getElementById("clubLabFields");
+    var busInchargeFields = document.getElementById("busInchargeFields");
+    var hostelDutyFields = document.getElementById("hostelDutyFields");
+    var ISOFields = document.getElementById("ISOFields");
+    var IQACFields = document.getElementById("IQACFields");
+
+    if (dutyType === "HODAHOD") {
+        HODAHODFields.style.display = "block";
+        clubLabFields.style.display = "none";
+        busInchargeFields.style.display = "none";
+        hostelDutyFields.style.display = "none";
+        ISOFields.style.display = "none";
+        IQACFields.style.display = "none";
+    } else if (dutyType === "clubLab") {
+        HODAHODFields.style.display = "none";
+        clubLabFields.style.display = "block";
+        busInchargeFields.style.display = "none";
+        hostelDutyFields.style.display = "none";
+        ISOFields.style.display = "none";
+        IQACFields.style.display = "none";
+    } else if (dutyType === "busIncharge") {
+        HODAHODFields.style.display = "none";
+        clubLabFields.style.display = "none";
+        busInchargeFields.style.display = "block";
+        hostelDutyFields.style.display = "none";
+        ISOFields.style.display = "none";
+        IQACFields.style.display = "none";
+    } else if (dutyType === "hostelDuty") {
+        HODAHODFields.style.display = "none";
+        clubLabFields.style.display = "none";
+        busInchargeFields.style.display = "none";
+        hostelDutyFields.style.display = "block";
+        ISOFields.style.display = "none";
+        IQACFields.style.display = "none";
+    }

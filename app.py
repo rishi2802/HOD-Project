@@ -27,7 +27,7 @@ print("Updated document ID:", result.upserted_id)
 def index():
     
 
-    return render_template('./Publication.html')
+    return render_template('card.html')
 
 @app.route('/acasubmit', methods=['POST'])
 def acasubmit():
@@ -60,12 +60,27 @@ def pubsubmit():
     else:
             collection.update_one(filter, {"$set": {"projects": [pub]}}, upsert=True)
     
-    if(selected_option=="nationalJournal"):
+    if(selected_option=="internationalConference"):
+        val= worksheet[2][5].value
+        val=val+1
+        worksheet.cell(row=2, column=6, value=val)   
+        workbook.save("teacher.xlsx")
+    elif(selected_option=="nationalJournal"):
         val= worksheet[2][6].value
         val=val+1
         worksheet.cell(row=2, column=7, value=val)   
         workbook.save("teacher.xlsx")
-        
+    elif(selected_option=="internationalJournal"):
+        val= worksheet[2][7].value
+        val=val+1
+        worksheet.cell(row=2, column=8, value=val)   
+        workbook.save("teacher.xlsx")
+    elif(selected_option=="nationalConference"):
+        val= worksheet[2][4].value
+        val=val+1
+        worksheet.cell(row=2, column=5, value=val)   
+        workbook.save("teacher.xlsx")
+
     return render_template("login.html")
 
 @app.route('/guisubmit', methods=['POST'])
@@ -83,22 +98,33 @@ def guisubmit():
         # If "projects" field doesn't exist, create it with the new project
     else:
             collection.update_one(filter, {"$set": {"guidance": [pub]}}, upsert=True)
-    val=worksheet[2][5].value
-    worksheet.cell(row=2, column=5, value=val+1)
-    workbook.save("teacher.xlsx")
-    print(worksheet[2][5].value)
+    if(selected_option=="UG"):
+        val= worksheet[2][8].value
+        val=val+1
+        worksheet.cell(row=2, column=9, value=val)   
+        workbook.save("teacher.xlsx")
+    elif(selected_option=="PG"):
+        val= worksheet[2][9].value
+        val=val+1
+        worksheet.cell(row=2, column=10, value=val)   
+        workbook.save("teacher.xlsx")
+    elif(selected_option=="PhD"):
+        val= worksheet[2][10].value
+        val=val+1
+        worksheet.cell(row=2, column=11, value=val)   
+        workbook.save("teacher.xlsx")
     
     return render_template("login.html")
     
 
-@app.route('/dashboard', methods=['POST'])
+@app.route('/card', methods=['POST'])
 def dashboard():
     # Check login credentials (dummy authentication)
     username = request.form['username']
     password = request.form['password']
-    hello = 'rishi'
-    if username == 'sunu' and password == 'admin':
-        return render_template('dashboard.html',hello = hello)
+    
+    if username == 'admin' and password == 'admin':
+        return render_template('dashboard.html',username == username)
     else:
         return render_template('login.html', message='Invalid credentials')
 

@@ -117,14 +117,14 @@ def guisubmit():
     return render_template("login.html")
     
 
-@app.route('/dashboard', methods=['POST'])
+@app.route('/card', methods=['POST'])
 def dashboard():
     # Check login credentials (dummy authentication)
     username = request.form['username']
     password = request.form['password']
-    hello = 'rishi'
-    if username == 'sunu' and password == 'admin':
-        return render_template('dashboard.html',hello = hello)
+    
+    if username == 'admin' and password == 'admin':
+        return render_template('dashboard.html',username == username)
     else:
         return render_template('login.html', message='Invalid credentials')
 

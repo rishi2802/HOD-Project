@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Faculty attended events</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .container {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        width: 300px;
+      }
+
+      .container h2 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      select,
+      input[type="text"],
+      input[type="date"],
+      button[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+
+      .error {
+        color: red;
+        font-size: 0.8em;
+      }
+
+      button[type="submit"] {
+        background-color: #4caf50;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      button[type="submit"]:hover {
+        background-color: #45a049;
+      }
+
+      #workshopFields,
+      #glFields,
+      #fdpFields,
+      #seminarFields,
+      #certificationFields {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Faculty attended events</h2>
+      <form id="eventsForm" action="/eventssubmit" method="POST">
+        <div>
+          <label for="eventType">Event Type:</label><br />
+          <select id="eventType" name="eventType" onchange="showFields()">
+            <option value="">Select Event Type</option>
+            <option value="workshop">Workshop</option>
+            <option value="gl">Guest Lecture</option>
+            <option value="fdp">FDP</option>
+            <option value="seminar">Seminar</option>
+          </select>
+        </div>
+        <div id="workshopFields">
+          <label for="workshopTitle">Workshop Title:</label>
+          <input
+            type="text"
+            id="workshopTitle"
+            name="workshopTitle"
+            placeholder="Enter Workshop Title"
+          />
+          <label for="workshopDate">Date:</label>
+          <input type="date" id="workshopDate" name="workshopDate" />
+        </div>
+        <div id="glFields">
+          <label for="glTitle">Guest Lecture Title:</label>
+          <input
+            type="text"
+            id="glTitle"
+            name="glTitle"
+            placeholder="Enter Guest Lecture Title"
+          />
+          <label for="glDate">Date:</label>
+          <input type="date" id="glDate" name="glDate" />
+        </div>
+        <div id="fdpFields">
+          <label for="fdpTitle">FDP Title:</label>
+          <input
+            type="text"
+            id="fdpTitle"
+            name="fdpTitle"
+            placeholder="Enter FDP Title"
+          />
+          <label for="fdpDate">Date:</label>
+          <input type="date" id="fdpDate" name="fdpDate" />
+        </div>
+        <div id="seminarFields">
+          <label for="seminarTitle">Seminar Title:</label>
+          <input
+            type="text"
+            id="seminarTitle"
+            name="seminarTitle"
+            placeholder="Enter Seminar Title"
+          />
+          <label for="seminarDate">Date:</label>
+          <input type="date" id="seminarDate" name="seminarDate" />
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+
+    <script>
+      function showFields() {
+        var eventType = document.getElementById("eventType").value;
+        var workshopFields = document.getElementById("workshopFields");
+        var glFields = document.getElementById("glFields");
+        var fdpFields = document.getElementById("fdpFields");
+        var seminarFields = document.getElementById("seminarFields");
+
+        if (eventType === "workshop") {
+          workshopFields.style.display = "block";
+          glFields.style.display = "none";
+          fdpFields.style.display = "none";
+          seminarFields.style.display = "none";
+        } else if (eventType === "gl") {
+          workshopFields.style.display = "none";
+          glFields.style.display = "block";
+          fdpFields.style.display = "none";
+          seminarFields.style.display = "none";
+        } else if (eventType === "fdp") {
+          workshopFields.style.display = "none";
+          glFields.style.display = "none";
+          fdpFields.style.display = "block";
+          seminarFields.style.display = "none";
+        } else if (eventType === "seminar") {
+          workshopFields.style.display = "none";
+          glFields.style.display = "none";
+          fdpFields.style.display = "none";
+          seminarFields.style.display = "block";
+        }
+      }
+    </script>
+  </body>
+</html>

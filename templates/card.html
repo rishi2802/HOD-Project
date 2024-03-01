@@ -4,8 +4,142 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Academic Card Layout</title>
-<link rel="stylesheet" href="card-styles.css">
+<link rel="stylesheet" href="./card-styles.css">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"  rel="stylesheet" />
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+.carousel-section {
+    text-align: center;
+    justify-content: center;
+    justify-items: center;
+    width: 100%; 
+    margin: 0; 
+    
+    padding: 4px;
+    /* border-radius: 8px; */
+    padding-top: 90px;
+    background: linear-gradient(to bottom, #3498db, #7f8c8d);
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.card {
+    width: calc(33.33% - 20px); 
+    margin: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    height: 200px;
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.2);
+}
+.card-body {
+display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.card h3 {
+    color: black;
+}
+
+.navbar {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  
+  }
+
+  .card img {
+    max-width: 100%;
+    max-height: 150px; 
+    object-fit: cover;
+  }
+
+  .botao {
+    width: 125px;
+    height: 45px;
+    border-radius: 20px;
+    border: none;
+    box-shadow: 1px 1px rgba(107, 221, 215, 0.37);
+    padding: 5px 10px;
+    background: rgb(47,93,197);
+    background: linear-gradient(160deg, rgba(47,93,197,1) 0%, rgba(46,86,194,1) 5%, rgba(47,93,197,1) 11%, rgba(59,190,230,1) 57%, rgba(0,212,255,1) 71%);
+    color: #fff;
+    font-family: Roboto, sans-serif;
+    font-weight: 505;
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+    filter: drop-shadow(0 0 10px rgba(59, 190, 230, 0.568));
+    transition: .5s linear;
+  }
+  
+  .botao .mysvg {
+    display: none;
+  }
+  
+  .botao:hover {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    transition: .5s linear;
+  }
+  
+  .botao:hover .texto {
+    display: none;
+  }
+  
+  .botao:hover .mysvg {
+    display: inline;
+  }
+  
+  .botao:hover::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    width: 100%;
+    height: 100%;
+    border: 3.5px solid transparent;
+    border-top: 3.5px solid #fff;
+    border-right: 3.5px solid #fff;
+    border-radius: 50%;
+    animation: animateC 2s linear infinite;
+  }
+  
+  @keyframes animateC {
+    0% {
+      transform: rotate(0deg);
+    }
+  
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .butt{
+    padding-top: 50px;
+    padding-bottom:  46px;
+  }
+</style>
 </head>
 <body>
     
@@ -90,14 +224,14 @@ document.addEventListener("DOMContentLoaded", function() {
     <div class="card">
         <a href="templates/result.html" >
       <div class="card-body">
-        <img src="assests/performance.png" alt="Academic Marks Image">
+        <img src="performance.png" alt="Academic Marks Image">
         <h3>Academic Marks: ${academic_marks}</h3>
       </div>
     </div>
     <div class="card">
         <a href="templates/Publication.html" > 
       <div class="card-body">
-        <img src="assests/research.png" alt="Research Marks Image">
+        <img src="static/research.png" alt="Research Marks Image">
         <h3>Research Marks: ${research_marks}</h3>
       </div>
     </div>

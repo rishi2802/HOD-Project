@@ -124,7 +124,7 @@ def dashboard():
     password = request.form['password']
     
     if username == 'admin' and password == 'admin':
-        return render_template('dashboard.html',username == username)
+        return render_template('card.html',username == username)
     else:
         return render_template('login.html', message='Invalid credentials')
 

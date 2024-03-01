@@ -163,8 +163,9 @@ display: flex;
   <div class="card-container" id="cardContainer">
     <!-- Cards will be dynamically added here -->
   </div>
+  <form action="/download" method="GET">
  <div class="butt">
-  <button class="botao">
+  <button class="botao" type="submit">
     <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="mysvg"><g id="SVGRepo_bgCarrier" stroke-width="0">
       </g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">
          <g id="Interface / Download"> 
@@ -172,8 +173,10 @@ display: flex;
          </path>
       </g> </g>
     </svg>
+    
     <span class="texto">Download</span>
   </button>
+</form>
 </div>
 
 </div>
@@ -259,14 +262,14 @@ document.addEventListener("DOMContentLoaded", function() {
         <a href="templates/facultyevents.html" > 
       <div class="card-body">
         <img src="static/learning.png" alt="Faculty Attended Events Marks Image">
-        <h3>Faculty Attended Events Marks: </h3>
+        <h3>Faculty Attended Events Marks: 3</h3>
       </div>
     </div>
     <div class="card">
         <a href="templates/adminduties.html"> 
       <div class="card-body">
         <img src="static/admin.png" alt="Administrative Marks Image">
-        <h3>Administrative Marks: </h3>
+        <h3>Administrative Marks: 5</h3>
       </div>
     </div>
     <div class="card">

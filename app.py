@@ -1,5 +1,6 @@
 # app.py (Flask Backend)
-from flask import Flask, render_template, request, jsonify
+
+from flask import Flask, render_template, request, jsonify,send_file
 import csv
 from pymongo import MongoClient
 app = Flask(__name__)
@@ -244,6 +245,14 @@ def admin_duties():
 @app.route('/templates/result.html')
 def endresult():
     return render_template('result.html')
+
+@app.route('/download', methods=['GET'])
+def download_excel():
+    # Provide the path to your existing Excel file
+    excel_file_path = 'path_to_your_excel_file.xlsx'
+    print("ho")
+    # Return the file as a response
+    return send_file("teacher.xlsx", as_attachment=True)
 
 @app.route('/submit', methods=['POST'])
 def submit():

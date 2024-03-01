@@ -67,8 +67,11 @@ def index():
     ind=int(worksheet[2][11].value)*4
     if(ind>10):
          ind=10
+    eve=int(worksheet[2][12].value)*3
+    if(eve>10):
+         eve=10
 
-    return render_template('card.html',acad=acad,pub=pub,gui=gui,ind=ind)
+    return render_template('publication.html',acad=acad,pub=pub,gui=gui,ind=ind,eve=eve)
 
 @app.route('/acasubmit', methods=['POST'])
 def acasubmit():
@@ -175,9 +178,30 @@ def indsubmit():
     val=worksheet[2][11].value
     val=val+1
     worksheet.cell(row=2,column=12,value=val)
-
+    workbook.save("teacher.xlsx")
     return render_template("card.html")
-    
+
+@app.route('/evesubmit', methods=['POST'])
+def evesubmit():
+    selected_option = request.form['eventType']
+    print(selected_option)
+    publisherName = request.form.get('instituteName')
+    title = request.form.get('eventTitle')
+    date=request.form.get('eventDate')
+    pub = {"type": selected_option, "title":title ,"Institution":publisherName, "date": date}
+    # Update the document
+    existing_doc = collection.find_one(filter)
+        # If "projects" field exists, push the new project
+    if "events" in existing_doc:
+            collection.update_one(filter, {"$push": {"events": pub}})
+        # If "projects" field doesn't exist, create it with the new project
+    else:
+            collection.update_one(filter, {"$set": {"events": [pub]}}, upsert=True)
+    val=worksheet[2][12].value
+    val=val+1
+    worksheet.cell(row=2,column=13,value=val)
+    workbook.save("teacher.xlsx")
+    return render_template("login.html")
 
 @app.route('/card', methods=['POST'])
 def dashboard():

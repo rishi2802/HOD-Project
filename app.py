@@ -70,8 +70,8 @@ def index():
     eve=int(worksheet[2][12].value)*3
     if(eve>10):
          eve=10
-
-    return render_template('publication.html',acad=acad,pub=pub,gui=gui,ind=ind,eve=eve)
+    total=acad+pub+gui+ind+eve
+    return render_template('card.html',acad=acad,pub=pub,gui=gui,ind=ind,eve=eve,total=total)
 
 @app.route('/acasubmit', methods=['POST'])
 def acasubmit():
@@ -202,6 +202,10 @@ def evesubmit():
     worksheet.cell(row=2,column=13,value=val)
     workbook.save("teacher.xlsx")
     return render_template("login.html")
+
+@app.route('/templates/result.html')
+def res():
+     return render_template("result.html")
 
 @app.route('/card', methods=['POST'])
 def dashboard():

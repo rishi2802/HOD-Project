@@ -153,7 +153,7 @@ display: flex;
                 <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">Faculty Apraisal Portal</span>
             </a>
             <div class="flex items-center space-x-6 rtl:space-x-reverse">
-                <a href="#" class="text-sm text-white hover:underline">Logout</a>
+                <a action="/" method="POST" class="text-sm text-white hover:underline">Logout</a>
             </div>
         </div>
     </nav>
@@ -273,7 +273,7 @@ document.addEventListener("DOMContentLoaded", function() {
       </div>
     </div>
     <div class="card">
-        <a href="templates/result.html">
+        <!-- <a href="templates/result.html"> -->
       <div class="card-body">
         <img src="static/total.png" alt="Total Marks Image">
         <h3>Total Marks: {{total}}</h3>

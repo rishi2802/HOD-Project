@@ -64,7 +64,11 @@ def index():
     if(phd>15):
          gui=15
 
-    return render_template('card.html',acad=acad,pub=pub,gui=gui)
+    ind=int(worksheet[2][11].value)*4
+    if(ind>10):
+         ind=10
+
+    return render_template('card.html',acad=acad,pub=pub,gui=gui,ind=ind)
 
 @app.route('/acasubmit', methods=['POST'])
 def acasubmit():
@@ -152,6 +156,27 @@ def guisubmit():
         workbook.save("teacher.xlsx")
     
     return render_template("login.html")
+
+@app.route('/indsubmit', methods=['POST'])
+def indsubmit():
+    selected_option = request.form['collaborationType']
+    print(selected_option)
+    title = request.form.get('projectTitle')
+    date=request.form.get('year')
+    pub = {"type": selected_option, "title":title ,"date": date}
+    # Update the document
+    existing_doc = collection.find_one(filter)
+        # If "projects" field exists, push the new project
+    if "Industry" in existing_doc:
+            collection.update_one(filter, {"$push": {"Industry": pub}})
+        # If "projects" field doesn't exist, create it with the new project
+    else:
+            collection.update_one(filter, {"$set": {"Industry": [pub]}}, upsert=True)
+    val=worksheet[2][11].value
+    val=val+1
+    worksheet.cell(row=2,column=12,value=val)
+
+    return render_template("card.html")
     
 
 @app.route('/card', methods=['POST'])

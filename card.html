@@ -14,7 +14,7 @@
 
     <nav class="navbar bg-blue-500 border-gray-200 dark:bg-gray-900">
         <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
-            <a href="https://flowbite.com" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <a class="flex items-center space-x-3 rtl:space-x-reverse">
                 <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" />
                 <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">Faculty Apraisal Portal</span>
             </a>
@@ -30,6 +30,19 @@
   <div class="card-container" id="cardContainer">
     <!-- Cards will be dynamically added here -->
   </div>
+ <div class="butt">
+  <button class="botao">
+    <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="mysvg"><g id="SVGRepo_bgCarrier" stroke-width="0">
+      </g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">
+         <g id="Interface / Download"> 
+         <path id="Vector" d="M6 21H18M12 3V17M12 17L17 12M12 17L7 12" stroke="#f1f1f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+         </path>
+      </g> </g>
+    </svg>
+    <span class="texto">Download</span>
+  </button>
+</div>
+
 </div>
 
 <script>
@@ -75,49 +88,56 @@ document.addEventListener("DOMContentLoaded", function() {
   const cardContainer = document.getElementById('cardContainer');
   const cardHTML = `
     <div class="card">
+        <a href="templates/result.html" >
       <div class="card-body">
         <img src="assests/performance.png" alt="Academic Marks Image">
         <h3>Academic Marks: ${academic_marks}</h3>
       </div>
     </div>
     <div class="card">
+        <a href="templates/Publication.html" > 
       <div class="card-body">
         <img src="assests/research.png" alt="Research Marks Image">
         <h3>Research Marks: ${research_marks}</h3>
       </div>
     </div>
     <div class="card">
+        <a href="templates/Guidence.html" > 
       <div class="card-body">
         <img src="assests/guide.png" alt="Project Guidance Marks Image">
         <h3>Project Guidance Marks: ${project_guidance_marks}</h3>
       </div>
     </div>
     <div class="card">
+        <a href="templates/Publication.html"> 
       <div class="card-body">
         <img src="assests/industry.png" alt="Industry Related Marks Image">
         <h3>Industry Related Marks: ${industry_related_marks}</h3>
       </div>
     </div>
     <div class="card">
+        <a href="templates/Publication.html" > 
       <div class="card-body">
         <img src="assests/events.png" alt="Faculty Organized Events Marks Image">
         <h3>Faculty Organized Events Marks: ${faculty_organized_events_marks}</h3>
       </div>
     </div>
     <div class="card">
+        <a href="templates/Publication.html" > 
       <div class="card-body">
         <img src="assests/learning.png" alt="Faculty Attended Events Marks Image">
         <h3>Faculty Attended Events Marks: ${faculty_attended_events_marks}</h3>
       </div>
     </div>
     <div class="card">
+        <a href="templates/Publication.html"> 
       <div class="card-body">
         <img src="assests/admin.png" alt="Administrative Marks Image">
         <h3>Administrative Marks: ${administrative_marks}</h3>
       </div>
     </div>
     <div class="card">
-        <a href="faculty_organized_events_marks_page.html" class="card">
+        <a href="templates/result.html">
       <div class="card-body">
         <img src="assests/total.png" alt="Total Marks Image">
         <h3>Total Marks: ${total_marks}</h3>

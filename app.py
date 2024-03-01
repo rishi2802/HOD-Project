@@ -46,9 +46,25 @@ def index():
          aca[1]=10
     acad=aca[0]+aca[1]
 
-    res=[1]
+    res=[1,2,3,4]
+    res[0]=int(worksheet[2][5].value)*3
+    res[1]=int(worksheet[2][4].value)*2
+    res[2]=int(worksheet[2][6].value)*4
+    res[3]=int(worksheet[2][7].value)*6
 
-    return render_template('card.html',acad=acad)
+    pub=res[0]+res[1]+res[2]+res[3]
+    if(pub>15):
+         pub=15
+
+    ug=int(worksheet[2][8].value)*2
+    pg=int(worksheet[2][9].value)*4
+    phd=int(worksheet[2][10].value)*6
+
+    gui=ug+pg+phd
+    if(phd>15):
+         gui=15
+
+    return render_template('card.html',acad=acad,pub=pub,gui=gui)
 
 @app.route('/acasubmit', methods=['POST'])
 def acasubmit():

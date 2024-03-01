@@ -25,9 +25,30 @@ print("Updated document ID:", result.upserted_id)
 """
 @app.route('/')
 def index():
-    
+    aca=[1,2]
+    aca[0]=int(worksheet[2][2].value)
+    if(aca[0]<80):
+         aca[0]=5
+    if(aca[0]>80 and aca[0]<90):
+         aca[0]=6
+    if(aca[0]>=90 and aca[0]<95):
+         aca[0]=7
+    if(aca[0]>=95):
+         aca[0]=10
+    aca[1]=int(worksheet[2][3].value)
+    if(aca[1]<80):
+         aca[1]=5
+    if(aca[1]>80 and aca[1]<90):
+         aca[0]=6
+    if(aca[1]>=90 and aca[1]<95):
+         aca[1]=8
+    if(aca[1]>=95):
+         aca[1]=10
+    acad=aca[0]+aca[1]
 
-    return render_template('card.html')
+    res=[1]
+
+    return render_template('card.html',acad=acad)
 
 @app.route('/acasubmit', methods=['POST'])
 def acasubmit():

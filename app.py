@@ -189,6 +189,33 @@ def dashboard():
         return render_template('card.html',username == username)
     else:
         return render_template('login.html', message='Invalid credentials')
+@app.route('/templates/result.html')
+def result():
+    return render_template('result.html')
+
+@app.route('/templates/Publication.html')
+def publication():
+    return render_template('Publication.html')
+
+@app.route('/templates/Guidence.html')
+def guidance():
+    return render_template('Guidence.html')
+
+@app.route('/templates/Industry.html')
+def industry():
+    return render_template('Industry.html')
+
+@app.route('/templates/events.html')
+def events():
+    return render_template('events.html')
+
+@app.route('/templates/adminduties.html')
+def admin_duties():
+    return render_template('adminduties.html')
+
+@app.route('/templates/result.html')
+def endresult():
+    return render_template('result.html')
 
 @app.route('/submit', methods=['POST'])
 def submit():

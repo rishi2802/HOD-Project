@@ -86,7 +86,7 @@ def acasubmit():
     collection.update_one(filter, update, upsert=True)
     update = {"$set": {"feedback": fee}}
     collection.update_one(filter, update, upsert=True)
-    return render_template('result.html')
+    return render_template('card.html')
 
 @app.route('/pubsubmit', methods=['POST'])
 def pubsubmit():
@@ -126,7 +126,7 @@ def pubsubmit():
         worksheet.cell(row=2, column=5, value=val)   
         workbook.save("teacher.xlsx")
 
-    return render_template("login.html")
+    return render_template('card.html')
 
 @app.route('/guisubmit', methods=['POST'])
 def guisubmit():

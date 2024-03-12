@@ -5,7 +5,8 @@ import csv
 from pymongo import MongoClient
 app = Flask(__name__)
 client = MongoClient('mongodb://localhost:27017/') 
-
+def val():
+     return
 # Access or create a database
 db = client['Credit']  
 collection = db['Scores']  
@@ -19,13 +20,7 @@ document = {"name": "abi"}
 
 # Upsert the document into the collection
 result = collection.update_one(filter, {"$set": document}, upsert=True)
-"""
-
-# Print the updated document's ID
-print("Updated document ID:", result.upserted_id)
-"""
-@app.route('/')
-def index():
+def calc():
     aca=[1,2]
     aca[0]=int(worksheet[2][2].value)
     if(aca[0]<80):
@@ -72,7 +67,17 @@ def index():
     if(eve>10):
          eve=10
     total=acad+pub+gui+ind+eve
-    return render_template('card.html',acad=acad,pub=pub,gui=gui,ind=ind,eve=eve,total=total)
+    l=[acad,pub,gui,ind,eve,total]
+    return l
+
+"""
+# Print the updated document's ID
+print("Updated document ID:", result.upserted_id)
+"""
+@app.route('/')
+def index():
+    l=calc()
+    return render_template('card.html',acad=l[0],pub=l[1],gui=l[2],ind=l[3],eve=l[4],total=l[5])
 
 @app.route('/acasubmit', methods=['POST'])
 def acasubmit():
@@ -86,8 +91,7 @@ def acasubmit():
     collection.update_one(filter, update, upsert=True)
     update = {"$set": {"feedback": fee}}
     collection.update_one(filter, update, upsert=True)
-    return render_template('card.html')
-
+    return render_template("card.html")
 @app.route('/pubsubmit', methods=['POST'])
 def pubsubmit():
     selected_option = request.form['publicationType']
@@ -126,7 +130,8 @@ def pubsubmit():
         worksheet.cell(row=2, column=5, value=val)   
         workbook.save("teacher.xlsx")
 
-    return render_template('card.html')
+    l=calc()
+    return render_template('card.html',acad=l[0],pub=l[1],gui=l[2],ind=l[3],eve=l[4],total=l[5])
 
 @app.route('/guisubmit', methods=['POST'])
 def guisubmit():
@@ -159,7 +164,8 @@ def guisubmit():
         worksheet.cell(row=2, column=11, value=val)   
         workbook.save("teacher.xlsx")
     
-    return render_template("login.html")
+    l=calc()
+    return render_template('card.html',acad=l[0],pub=l[1],gui=l[2],ind=l[3],eve=l[4],total=l[5])
 
 @app.route('/indsubmit', methods=['POST'])
 def indsubmit():
@@ -180,7 +186,8 @@ def indsubmit():
     val=val+1
     worksheet.cell(row=2,column=12,value=val)
     workbook.save("teacher.xlsx")
-    return render_template("card.html")
+    l=calc()
+    return render_template('card.html',acad=l[0],pub=l[1],gui=l[2],ind=l[3],eve=l[4],total=l[5])
 
 @app.route('/evesubmit', methods=['POST'])
 def evesubmit():
@@ -202,7 +209,8 @@ def evesubmit():
     val=val+1
     worksheet.cell(row=2,column=13,value=val)
     workbook.save("teacher.xlsx")
-    return render_template("login.html")
+    l=calc()
+    return render_template('card.html',acad=l[0],pub=l[1],gui=l[2],ind=l[3],eve=l[4],total=l[5])
 
 @app.route('/templates/result.html')
 def res():

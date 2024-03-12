@@ -60,7 +60,7 @@
 
       #instituteFields,
       #certificationFields {
-        display: none;
+        display: block;
       }
     </style>
   </head>
@@ -75,7 +75,7 @@
       >
         <div>
           <label for="eventType">Event Type:</label><br />
-          <select id="eventType" name="eventType" onchange="showFields()">
+          <select id="eventType" name="eventType" >
             <option value="">Select</option>
             <option value="workshop">Workshop</option>
             <option value="guest_lecture">Guest Lecture</option>
@@ -106,26 +106,10 @@
           <input type="date" id="eventDate" name="eventDate" />
         </div>
 
-        <div id="certificationFields">
-          <label for="certificationTitle">Certification Title:</label>
-          <input
-            type="text"
-            id="certificationTitle"
-            name="certificationTitle"
-            placeholder="Enter Certification Title"
-          />
+        
 
-          <label for="issueDate">Date of Issuing:</label>
-          <input type="date" id="issueDate" name="issueDate" />
-
-          <label for="certificateID">Certificate ID:</label>
-          <input
-            type="text"
-            id="certificateID"
-            name="certificateID"
-            placeholder="Enter Certificate ID"
-          />
-        </div>
+          
+        
 
         <button type="submit">Submit</button>
       </form>
@@ -139,7 +123,7 @@
           "certificationFields"
         );
 
-        if (eventType === "workshop" || eventType === "guest_lecture" || eventType === "fdp" || eventType === "seminar") {
+        if (eventType === "workshop") {
           instituteFields.style.display = "block";
           certificationFields.style.display = "none";
         } else if (eventType === "certification") {
@@ -166,7 +150,7 @@
           return false;
         }
 
-        if (eventType === "workshop" || eventType === "guest_lecture" || eventType === "fdp" || eventType === "seminar") {
+        if (eventType === "workshop") {
           if (instituteName == "" || eventTitle == "" || eventDate == "") {
             alert("Please fill in all fields.");
             return false;

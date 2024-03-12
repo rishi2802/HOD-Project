@@ -24,34 +24,46 @@ body {
     
     padding: 4px;
     /* border-radius: 8px; */
-    padding-top: 90px;
+    padding-top: 30px;
     background: linear-gradient(to bottom, #3498db, #7f8c8d);
 }
 
 .card-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 10px; 
 }
 
 .card {
-    width: calc(33.33% - 20px); 
-    margin: 10px;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    height: 200px;
-    background-color: #fff;
-    border-radius: 8px;
+  flex: 1 1 calc(33.33% - 20px);
+  margin: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+  height: 200px;
+  background-color: #fff;
+  border-radius: 8px;
 }
 
+@media (max-width: 992px) {
+  .card {
+      flex-basis: calc(50% - 20px); 
+  }
+}
+
+@media (max-width: 576px) {
+  .card {
+      flex-basis: calc(100% - 20px); 
+  }
+}
 .card:hover {
     transform: scale(1.05);
     box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.2);
 }
+
 .card-body {
-display: flex;
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -64,7 +76,6 @@ display: flex;
 
 .navbar {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  
   }
 
   .card img {
@@ -72,7 +83,7 @@ display: flex;
     max-height: 150px; 
     object-fit: cover;
   }
-
+  
   .botao {
     width: 125px;
     height: 45px;
@@ -136,8 +147,8 @@ display: flex;
   }
   
   .butt{
-    padding-top: 50px;
-    padding-bottom:  46px;
+    padding-top: 8px;
+    padding-bottom: 4px;
   }
 </style>
 </head>
@@ -183,7 +194,7 @@ display: flex;
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-  // Sample data
+ 
   const data = {
     results: 85,
     feedbacks: 15,
@@ -273,11 +284,11 @@ document.addEventListener("DOMContentLoaded", function() {
       </div>
     </div>
     <div class="card">
-        <!-- <a href="templates/result.html"> -->
-      <div class="card-body">
-        <img src="static/total.png" alt="Total Marks Image">
-        <h3>Total Marks: {{total}}</h3>
-      </div>
+      <a href="templates/result.html"> 
+    <div class="card-body">
+      <img src="static/resu.png" alt="Total  Marks Image">
+      <h3>Total Marks: {{total}}</h3>
+    </div>      
     </div>
   `;
   cardContainer.innerHTML = cardHTML;

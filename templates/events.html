@@ -77,7 +77,10 @@
           <label for="eventType">Event Type:</label><br />
           <select id="eventType" name="eventType" >
             <option value="">Select</option>
-            <option value="workshop">Workshop/Guest Lecture/FDP/Seminar</option>
+            <option value="workshop">Workshop</option>
+            <option value="guest_lecture">Guest Lecture</option>
+            <option value="fdp">FDP</option>
+            <option value="seminar">Seminar</option>
             <option value="certification">Certification Course</option>
           </select>
         </div>
@@ -112,6 +115,57 @@
       </form>
     </div>
 
-   
+    <script>
+      function showFields() {
+        var eventType = document.getElementById("eventType").value;
+        var instituteFields = document.getElementById("instituteFields");
+        var certificationFields = document.getElementById(
+          "certificationFields"
+        );
+
+        if (eventType === "workshop") {
+          instituteFields.style.display = "block";
+          certificationFields.style.display = "none";
+        } else if (eventType === "certification") {
+          instituteFields.style.display = "none";
+          certificationFields.style.display = "block";
+        } else {
+          instituteFields.style.display = "none";
+          certificationFields.style.display = "none";
+        }
+      }
+
+      function validateForm() {
+        var eventType = document.forms["eventsForm"]["eventType"].value;
+        var instituteName = document.forms["eventsForm"]["instituteName"].value;
+        var eventTitle = document.forms["eventsForm"]["eventTitle"].value;
+        var eventDate = document.forms["eventsForm"]["eventDate"].value;
+        var certificationTitle =
+          document.forms["eventsForm"]["certificationTitle"].value;
+        var issueDate = document.forms["eventsForm"]["issueDate"].value;
+        var certificateID = document.forms["eventsForm"]["certificateID"].value;
+
+        if (eventType == "") {
+          alert("Please select an event type.");
+          return false;
+        }
+
+        if (eventType === "workshop") {
+          if (instituteName == "" || eventTitle == "" || eventDate == "") {
+            alert("Please fill in all fields.");
+            return false;
+          }
+        } else if (eventType === "certification") {
+          if (
+            certificationTitle == "" ||
+            issueDate == "" ||
+            certificateID == ""
+          ) {
+            alert("Please fill in all fields.");
+            return false;
+          }
+        }
+      }
+    </script>
   </body>
 </html>

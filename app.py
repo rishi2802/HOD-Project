@@ -66,8 +66,15 @@ def calc():
     eve=int(worksheet[2][12].value)*3
     if(eve>10):
          eve=10
-    total=acad+pub+gui+ind+eve
-    l=[acad,pub,gui,ind,eve,total]
+    aeve=int(worksheet[2][13].value)*3
+    if(aeve>10):
+         aeve=10
+    adm=int(worksheet[2][13].value)*5
+    if(adm>15):
+         adm=15
+    total=acad+pub+gui+ind+eve+aeve+adm
+
+    l=[acad,pub,gui,ind,eve,total,aeve,adm]
     return l
 
 """
@@ -77,7 +84,7 @@ print("Updated document ID:", result.upserted_id)
 @app.route('/')
 def index():
     l=calc()
-    return render_template('card.html',acad=l[0],pub=l[1],gui=l[2],ind=l[3],eve=l[4],total=l[5])
+    return render_template('card.html',acad=l[0],pub=l[1],gui=l[2],ind=l[3],eve=l[4],total=l[5],aeve=l[6],adm=l[7])
 
 @app.route('/acasubmit', methods=['POST'])
 def acasubmit():
@@ -92,7 +99,7 @@ def acasubmit():
     update = {"$set": {"feedback": fee}}
     collection.update_one(filter, update, upsert=True)
     l=calc()
-    return render_template('card.html',acad=l[0],pub=l[1],gui=l[2],ind=l[3],eve=l[4],total=l[5])
+    return render_template('card.html',acad=l[0],pub=l[1],gui=l[2],ind=l[3],eve=l[4],total=l[5],aeve=l[6],adm=l[7])
     
 @app.route('/pubsubmit', methods=['POST'])
 def pubsubmit():
@@ -133,7 +140,7 @@ def pubsubmit():
         workbook.save("appraisal.xlsx")
 
     l=calc()
-    return render_template('card.html',acad=l[0],pub=l[1],gui=l[2],ind=l[3],eve=l[4],total=l[5])
+    return render_template('card.html',acad=l[0],pub=l[1],gui=l[2],ind=l[3],eve=l[4],total=l[5],aeve=l[6],adm=l[7])
 
 @app.route('/guisubmit', methods=['POST'])
 def guisubmit():
@@ -167,7 +174,7 @@ def guisubmit():
         workbook.save("appraisal.xlsx")
     
     l=calc()
-    return render_template('card.html',acad=l[0],pub=l[1],gui=l[2],ind=l[3],eve=l[4],total=l[5])
+    return render_template('card.html',acad=l[0],pub=l[1],gui=l[2],ind=l[3],eve=l[4],total=l[5],aeve=l[6],adm=l[7])
 
 @app.route('/indsubmit', methods=['POST'])
 def indsubmit():
@@ -189,7 +196,7 @@ def indsubmit():
     worksheet.cell(row=2,column=12,value=val)
     workbook.save("appraisal.xlsx")
     l=calc()
-    return render_template('card.html',acad=l[0],pub=l[1],gui=l[2],ind=l[3],eve=l[4],total=l[5])
+    return render_template('card.html',acad=l[0],pub=l[1],gui=l[2],ind=l[3],eve=l[4],total=l[5],aeve=l[6],adm=l[7])
 
 @app.route('/evesubmit', methods=['POST'])
 def evesubmit():
@@ -212,7 +219,48 @@ def evesubmit():
     worksheet.cell(row=2,column=13,value=val)
     workbook.save("appraisal.xlsx")
     l=calc()
-    return render_template('card.html',acad=l[0],pub=l[1],gui=l[2],ind=l[3],eve=l[4],total=l[5])
+    return render_template('card.html',acad=l[0],pub=l[1],gui=l[2],ind=l[3],eve=l[4],total=l[5],aeve=l[6],adm=l[7])
+
+@app.route('/eventssubmit', methods=['POST'])
+def attended():
+    selected_option = request.form['eventType']
+    print(selected_option)
+    publisherName = request.form.get('instituteName')
+    title = request.form.get('eventTitle')
+    date=request.form.get('eventDate')
+    pub = {"type": selected_option, "title":title ,"Institution":publisherName, "date": date}
+    # Update the document
+    existing_doc = collection.find_one(filter)
+        # If "projects" field exists, push the new project
+    if "Attended_events" in existing_doc:
+            collection.update_one(filter, {"$push": {"Attended_events": pub}})
+        # If "projects" field doesn't exist, create it with the new project
+    else:
+            collection.update_one(filter, {"$set": {"Attended_events": [pub]}}, upsert=True)
+    val=worksheet[2][13].value
+    val=val+1
+    worksheet.cell(row=2,column=14,value=val)
+    workbook.save("appraisal.xlsx")
+    l=calc()
+    return render_template('card.html',acad=l[0],pub=l[1],gui=l[2],ind=l[3],eve=l[4],total=l[5],aeve=l[6],adm=l[7])
+
+@app.route('/dutiessubmit')
+def admin():
+     selected_option = request.form['dutyType']
+     pub = {"type": selected_option}
+     existing_doc = collection.find_one(filter)
+        # If "projects" field exists, push the new project
+     if "Duties" in existing_doc:
+            collection.update_one(filter, {"$push": {"Duties": pub}})
+        # If "projects" field doesn't exist, create it with the new project
+     else:
+            collection.update_one(filter, {"$set": {"Duties": [pub]}}, upsert=True)
+     val=worksheet[2][14].value
+     val=val+1
+     worksheet.cell(row=2,column=15,value=val)
+     workbook.save("appraisal.xlsx")
+     l=calc()
+     return render_template('card.html',acad=l[0],pub=l[1],gui=l[2],ind=l[3],eve=l[4],total=l[5],aeve=l[6],adm=l[7])
 
 @app.route('/templates/result.html')
 def res():
@@ -251,6 +299,10 @@ def events():
 @app.route('/templates/adminduties.html')
 def admin_duties():
     return render_template('adminduties.html')
+
+@app.route('/templates/facultyevents.html')
+def fac():
+    return render_template('facultyevents.html')
 
 @app.route('/templates/result.html')
 def endresult():

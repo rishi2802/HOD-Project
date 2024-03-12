@@ -77,7 +77,10 @@
           <label for="eventType">Event Type:</label><br />
           <select id="eventType" name="eventType" onchange="showFields()">
             <option value="">Select</option>
-            <option value="workshop">Workshop/Guest Lecture/FDP/Seminar</option>
+            <option value="workshop">Workshop</option>
+            <option value="guest_lecture">Guest Lecture</option>
+            <option value="fdp">FDP</option>
+            <option value="seminar">Seminar</option>
             <option value="certification">Certification Course</option>
           </select>
         </div>
@@ -136,7 +139,7 @@
           "certificationFields"
         );
 
-        if (eventType === "workshop") {
+        if (eventType === "workshop" || eventType === "guest_lecture" || eventType === "fdp" || eventType === "seminar") {
           instituteFields.style.display = "block";
           certificationFields.style.display = "none";
         } else if (eventType === "certification") {
@@ -163,7 +166,7 @@
           return false;
         }
 
-        if (eventType === "workshop") {
+        if (eventType === "workshop" || eventType === "guest_lecture" || eventType === "fdp" || eventType === "seminar") {
           if (instituteName == "" || eventTitle == "" || eventDate == "") {
             alert("Please fill in all fields.");
             return false;

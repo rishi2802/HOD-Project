@@ -11,7 +11,7 @@ def val():
 db = client['Credit']  
 collection = db['Scores']  
 import openpyxl
-workbook = openpyxl.load_workbook("teacher.xlsx")
+workbook = openpyxl.load_workbook("appraisal.xlsx")
 worksheet = workbook.active
 filter = {"name": "abi"}
 
@@ -85,13 +85,14 @@ def acasubmit():
     fee = request.form.get('fee')
     worksheet.cell(row=2, column=3, value=res)
     worksheet.cell(row=2, column=4, value=fee)
-    workbook.save("teacher.xlsx")
+    workbook.save("appraisal.xlsx")
     # Define the update operation to set the result field to 85
     update = {"$set": {"result": res}}
     collection.update_one(filter, update, upsert=True)
     update = {"$set": {"feedback": fee}}
     collection.update_one(filter, update, upsert=True)
-    
+    l=calc()
+    return render_template('card.html',acad=l[0],pub=l[1],gui=l[2],ind=l[3],eve=l[4],total=l[5])
     
 @app.route('/pubsubmit', methods=['POST'])
 def pubsubmit():
@@ -114,22 +115,22 @@ def pubsubmit():
         val= worksheet[2][5].value
         val=val+1
         worksheet.cell(row=2, column=6, value=val)   
-        workbook.save("teacher.xlsx")
+        workbook.save("appraisal.xlsx")
     elif(selected_option=="nationalJournal"):
         val= worksheet[2][6].value
         val=val+1
         worksheet.cell(row=2, column=7, value=val)   
-        workbook.save("teacher.xlsx")
+        workbook.save("appraisal.xlsx")
     elif(selected_option=="internationalJournal"):
         val= worksheet[2][7].value
         val=val+1
         worksheet.cell(row=2, column=8, value=val)   
-        workbook.save("teacher.xlsx")
+        workbook.save("appraisal.xlsx")
     elif(selected_option=="nationalConference"):
         val= worksheet[2][4].value
         val=val+1
         worksheet.cell(row=2, column=5, value=val)   
-        workbook.save("teacher.xlsx")
+        workbook.save("appraisal.xlsx")
 
     l=calc()
     return render_template('card.html',acad=l[0],pub=l[1],gui=l[2],ind=l[3],eve=l[4],total=l[5])
@@ -153,17 +154,17 @@ def guisubmit():
         val= worksheet[2][8].value
         val=val+1
         worksheet.cell(row=2, column=9, value=val)   
-        workbook.save("teacher.xlsx")
+        workbook.save("appraisal.xlsx")
     elif(selected_option=="PG"):
         val= worksheet[2][9].value
         val=val+1
         worksheet.cell(row=2, column=10, value=val)   
-        workbook.save("teacher.xlsx")
+        workbook.save("appraisal.xlsx")
     elif(selected_option=="PhD"):
         val= worksheet[2][10].value
         val=val+1
         worksheet.cell(row=2, column=11, value=val)   
-        workbook.save("teacher.xlsx")
+        workbook.save("appraisal.xlsx")
     
     l=calc()
     return render_template('card.html',acad=l[0],pub=l[1],gui=l[2],ind=l[3],eve=l[4],total=l[5])
@@ -186,7 +187,7 @@ def indsubmit():
     val=worksheet[2][11].value
     val=val+1
     worksheet.cell(row=2,column=12,value=val)
-    workbook.save("teacher.xlsx")
+    workbook.save("appraisal.xlsx")
     l=calc()
     return render_template('card.html',acad=l[0],pub=l[1],gui=l[2],ind=l[3],eve=l[4],total=l[5])
 
@@ -209,7 +210,7 @@ def evesubmit():
     val=worksheet[2][12].value
     val=val+1
     worksheet.cell(row=2,column=13,value=val)
-    workbook.save("teacher.xlsx")
+    workbook.save("appraisal.xlsx")
     l=calc()
     return render_template('card.html',acad=l[0],pub=l[1],gui=l[2],ind=l[3],eve=l[4],total=l[5])
 
@@ -261,7 +262,7 @@ def download_excel():
     excel_file_path = 'path_to_your_excel_file.xlsx'
     print("ho")
     # Return the file as a response
-    return send_file("teacher.xlsx", as_attachment=True)
+    return send_file("appraisal.xlsx", as_attachment=True)
 
 @app.route('/submit', methods=['POST'])
 def submit():

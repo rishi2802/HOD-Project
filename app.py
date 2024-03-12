@@ -91,7 +91,8 @@ def acasubmit():
     collection.update_one(filter, update, upsert=True)
     update = {"$set": {"feedback": fee}}
     collection.update_one(filter, update, upsert=True)
-    return render_template("card.html")
+    
+    
 @app.route('/pubsubmit', methods=['POST'])
 def pubsubmit():
     selected_option = request.form['publicationType']

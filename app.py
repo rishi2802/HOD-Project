@@ -69,7 +69,7 @@ def calc():
     aeve=int(worksheet[2][13].value)*3
     if(aeve>10):
          aeve=10
-    adm=int(worksheet[2][13].value)*5
+    adm=int(worksheet[2][14].value)*5
     if(adm>15):
          adm=15
     total=acad+pub+gui+ind+eve+aeve+adm
@@ -244,7 +244,7 @@ def attended():
     l=calc()
     return render_template('card.html',acad=l[0],pub=l[1],gui=l[2],ind=l[3],eve=l[4],total=l[5],aeve=l[6],adm=l[7])
 
-@app.route('/dutiessubmit')
+@app.route('/dutiessubmit',methods=['POST'])
 def admin():
      selected_option = request.form['dutyType']
      pub = {"type": selected_option}

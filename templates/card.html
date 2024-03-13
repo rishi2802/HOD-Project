@@ -13,50 +13,59 @@ body {
     margin: 0;
     padding: 0;
     font-family: "Poppins", sans-serif;
-    }
+    background: linear-gradient(to bottom, #2E3192 , #1BFFFF);
+  }
+
 
 .carousel-section {
-    text-align: center;
-    justify-content: center;
-    justify-items: center;
-    width: 100%; 
-    margin: 0; 
-    
-    padding: 4px;
-    /* border-radius: 8px; */
-    padding-top: 30px;
-    background: linear-gradient(to bottom, #3498db, #7f8c8d);
+  text-align: center;
+  justify-content: center;
+  justify-items: center;
+  width: 100%; 
+  margin: 0 auto;
+  padding: 80px 20px; 
+  padding-top: 90px;
+  background-color: transparent;
+  min-height: calc(100vh - 190px); 
+  padding-bottom: 20px;
 }
-
 .card-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   padding: 10px; 
+  background-color: transparent;
 }
 
 .card {
-  flex: 1 1 calc(33.33% - 20px);
+  flex: 1 1 calc(25% - 20px); 
   margin: 10px;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
   height: 200px;
   background-color: #fff;
   border-radius: 8px;
 }
 
+@media (max-width: 1200px) {
+  .card {
+      flex-basis: calc(33.33% - 20px); /* Each card takes up 33.33% of the container width on smaller screens */
+  }
+}
+
 @media (max-width: 992px) {
   .card {
-      flex-basis: calc(50% - 20px); 
+      flex-basis: calc(50% - 20px); /* Each card takes up 50% of the container width on even smaller screens */
   }
 }
 
 @media (max-width: 576px) {
   .card {
-      flex-basis: calc(100% - 20px); 
+      flex-basis: calc(100% - 20px); /* Each card takes up 100% of the container width on the smallest screens */
   }
 }
+
 .card:hover {
     transform: scale(1.05);
     box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.2);
@@ -147,15 +156,13 @@ body {
   }
   
   .butt{
-    padding-top: 8px;
-    padding-bottom: 4px;
+    padding-top: 40px;
+    padding-bottom: 10px;
   }
 </style>
 </head>
 <body>
-    
-
-    
+  <div class="round-ball"></div>
 
     <nav class="navbar bg-blue-500 border-gray-200 dark:bg-gray-900">
         <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
@@ -167,7 +174,7 @@ body {
                 <a action="/" method="POST" class="text-sm text-white hover:underline">Logout</a>
             </div>
         </div>
-    </nav>
+      </nav>
     
     
 <div class="carousel-section">

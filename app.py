@@ -279,7 +279,35 @@ def dashboard():
 @app.route('/templates/result.html')
 def result():
     return render_template('result.html')
-
+@app.route('/templates/details.html')
+def details():
+    l=calc()
+    record = collection.find_one({"name": "abi"})
+    
+    # Organize data category-wise
+    academic_score = {
+        "result_percentage": record.get("result", ""),
+        "feedback_percentage": record.get("feedback", "")
+    }
+    
+    publications = record.get("projects", [])
+    
+    project_guidance = record.get("guidance", [])
+    
+    industry_collaboration = record.get("Industry", [])
+    
+    organised_events = record.get("events", [])
+    
+    attended_events = record.get("Attended_events", [])
+    
+    administrative_duties = record.get("Duties", [])
+    
+    # Render the template with data
+    return render_template('details.html', academic_score=academic_score, publications=publications,
+                           project_guidance=project_guidance, industry_collaboration=industry_collaboration,
+                           organised_events=organised_events, attended_events=attended_events,
+                           administrative_duties=administrative_duties,total=l[5])
+    
 @app.route('/templates/Publication.html')
 def publication():
     return render_template('Publication.html')

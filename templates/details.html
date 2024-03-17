@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"
+      rel="stylesheet"
+    />
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", sans-serif;
+            }
+        
+        .carousel-section {
+            
+            width: 100%; 
+            margin: 0; 
+            
+            padding: 4px;
+            /* border-radius: 8px; */
+            padding-top: 30px;
+            background: linear-gradient(to bottom, #3498db, #7f8c8d);
+        }
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+          }
+      
+          .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            padding: 20px;
+            width: calc(50% - 50px);
+            
+          }
+      
+          .card-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+           text-align: center;
+            padding: 6px;
+            background-color: rgba(136, 70, 70, 0.19);
+          }
+      
+          .card-content {
+            justify-items: center;
+            
+          }
+      
+          .attribute {
+            font-weight: bold;
+            display: inline-block;
+            width: 170px; /* Adjust the width as needed */
+          }
+      
+          .value {
+            display: inline-block;
+            margin-left: 10px;
+          }
+    </style>
+  </head>
+  <body >
+    <nav class="navbar bg-blue-500 border-gray-200 dark:bg-gray-900">
+      <div
+        class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4"
+      >
+        <a class="flex items-center space-x-3 rtl:space-x-reverse">
+          <img
+            src="https://flowbite.com/docs/images/logo.svg"
+            class="h-8"
+            alt="Flowbite Logo"
+          />
+          <span
+            class="self-center text-2xl font-semibold whitespace-nowrap text-white"
+            >Faculty Apraisal Portal</span
+          >
+        </a>
+        <div class="flex items-center space-x-6 rtl:space-x-reverse">
+          <a action="/" method="POST" class="text-sm text-white hover:underline"
+            >Logout</a
+          >
+        </div>
+      </div>
+    </nav>
+    <div class="carousel-section">
+      <div class="card-container">
+        <div class="card">
+          <div class="card-title">Profile</div>
+          <div class="card-content">
+            <div class="attribute">Name:</div><div class="value">Abi</div><br>
+            <div class="attribute">Department:</div><div class="value">CSE</div><br>
+            <div class="attribute">Total Score:</div><div class="value">{{ total }}</div><br>
+          </div>
+        </div>
+  
+        <div class="card">
+          <div class="card-title">Academic Score</div>
+          <div class="card-content">
+            <div class="attribute">Result Percentage:</div><div class="value">{{ academic_score.result_percentage }}</div><br>
+            <div class="attribute">Feedback Percentage:</div><div class="value">{{ academic_score.feedback_percentage }}</div><br>
+          </div>
+        </div>
+  
+        <div class="card">
+          <div class="card-title">Publications</div>
+          <div class="card-content">
+            {% for publication in publications %}
+            <div class="attribute">Category:</div><div class="value">{{ publication.type }}</div><br>
+            <div class="attribute">Title:</div><div class="value">{{ publication.title }}</div><br>
+            <div class="attribute">Publisher:</div><div class="value">{{ publication.publisher }}</div><br>
+            <div class="attribute">Date:</div><div class="value">{{ publication.date }}</div><br><br>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Project Guidance</div>
+          <div class="card-content">
+            {% for guidance in project_guidance %}
+            <div class="attribute">Degree:</div><div class="value">{{ guidance.type }}</div><br>
+            <div class="attribute">Title:</div><div class="value">{{ guidance.title }}</div><br>
+            <div class="attribute">Batch:</div><div class="value">{{ guidance.year }}</div><br>
+            {% endfor %}
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-title">Industry Collaboration</div>
+          <div class="card-content">
+            {% for collaboration in industry_collaboration %}
+            <div class="attribute">Type:</div><div class="value">{{ collaboration.type }}</div><br>
+            <div class="attribute">Project Title:</div><div class="value">{{ collaboration.title }}</div><br>
+            <div class="attribute">Year:</div><div class="value">{{ collaboration.date }}</div><br>
+            {% endfor %}
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-title">Organised Events</div>
+          <div class="card-content">
+            {% for event in organised_events %}
+            <div class="attribute">Type:</div><div class="value">{{ event.type }}</div><br>
+            <div class="attribute">Title:</div><div class="value">{{ event.title }}</div><br>
+            <div class="attribute">Year:</div><div class="value">{{ event.date }}</div><br>
+            {% endfor %}
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-title">Attended Events</div>
+          <div class="card-content">
+            {% for event in attended_events %}
+            <div class="attribute">Type:</div><div class="value">{{ event.type }}</div><br>
+            <div class="attribute">Title:</div><div class="value">{{ event.title }}</div><br>
+            <div class="attribute">Year:</div><div class="value">{{ event.date }}</div><br>
+            {% endfor %}
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-title">Administrative Duties</div>
+          <div class="card-content">
+            {% for duty in administrative_duties %}
+            <div class="attribute">Position:</div><div class="value">{{ duty.type }}</div><br>
+            <!-- Assuming there's a type attribute for administrative duties -->
+            {% endfor %}
+          </div>
+        </div>
+        
+    
+      
+      </div>
+    </div>
+  </body>
+</html>

@@ -127,7 +127,7 @@
             {% for guidance in project_guidance %}
             <div class="attribute">Degree:</div><div class="value">{{ guidance.type }}</div><br>
             <div class="attribute">Title:</div><div class="value">{{ guidance.title }}</div><br>
-            <div class="attribute">Batch:</div><div class="value">{{ guidance.year }}</div><br>
+            <div class="attribute">Batch:</div><div class="value">{{ guidance.year }}</div><br><br>
             {% endfor %}
           </div>
         </div>
@@ -138,7 +138,7 @@
             {% for collaboration in industry_collaboration %}
             <div class="attribute">Type:</div><div class="value">{{ collaboration.type }}</div><br>
             <div class="attribute">Project Title:</div><div class="value">{{ collaboration.title }}</div><br>
-            <div class="attribute">Year:</div><div class="value">{{ collaboration.date }}</div><br>
+            <div class="attribute">Year:</div><div class="value">{{ collaboration.date }}</div><br><br>
             {% endfor %}
           </div>
         </div>
@@ -149,7 +149,7 @@
             {% for event in organised_events %}
             <div class="attribute">Type:</div><div class="value">{{ event.type }}</div><br>
             <div class="attribute">Title:</div><div class="value">{{ event.title }}</div><br>
-            <div class="attribute">Year:</div><div class="value">{{ event.date }}</div><br>
+            <div class="attribute">Year:</div><div class="value">{{ event.date }}</div><br><br>
             {% endfor %}
           </div>
         </div>
@@ -160,7 +160,7 @@
             {% for event in attended_events %}
             <div class="attribute">Type:</div><div class="value">{{ event.type }}</div><br>
             <div class="attribute">Title:</div><div class="value">{{ event.title }}</div><br>
-            <div class="attribute">Year:</div><div class="value">{{ event.date }}</div><br>
+            <div class="attribute">Year:</div><div class="value">{{ event.date }}</div><br><br>
             {% endfor %}
           </div>
         </div>

@@ -14,6 +14,8 @@
             margin: 0;
             padding: 0;
             font-family: "Poppins", sans-serif;
+            background: linear-gradient(to bottom, #2E3192 , #1BFFFF);
+
             }
         
         .carousel-section {
@@ -24,7 +26,7 @@
             padding: 4px;
             /* border-radius: 8px; */
             padding-top: 30px;
-            background: linear-gradient(to bottom, #3498db, #7f8c8d);
+            /*background: linear-gradient(to bottom, #3498db, #7f8c8d);*/
         }
         .card-container {
             display: flex;
@@ -66,29 +68,92 @@
             display: inline-block;
             margin-left: 10px;
           }
+
+          
+  .navbar {
+    background-color:#2e3192;
+    
+    color: white; /* Text color */
+    padding: 10px 0;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1900px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .logo-container {
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+  }
+  
+  .navbar-logo {
+    width: 50px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 10px; /* Add some spacing between logo and title */
+  }
+  
+  .navbar-title {
+    margin: 0;
+    font-size: 1.2em;
+  }
+  
+  .navbar-content {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logout-link {
+    color: white;
+    text-decoration: none;
+    padding-right: 80px;
+  }
+  
+  /* Responsive styles */
+  @media (min-width: 769px) { /* Adjusted media query */
+    .navbar-toggle {
+      display: none;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .navbar-content {
+      display: none;
+    }
+  
+    .navbar-toggle {
+      display: block;
+    }
+  }
+  
+  /* Hamburger icon styles */
+  .navbar-toggle {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 1.5em;
+    cursor: pointer;
+    padding: 5px;
+  }
+
     </style>
   </head>
   <body >
-    <nav class="navbar bg-blue-500 border-gray-200 dark:bg-gray-900">
-      <div
-        class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4"
-      >
-        <a class="flex items-center space-x-3 rtl:space-x-reverse">
-          <img
-            src="https://flowbite.com/docs/images/logo.svg"
-            class="h-8"
-            alt="Flowbite Logo"
-          />
-          <span
-            class="self-center text-2xl font-semibold whitespace-nowrap text-white"
-            >Faculty Apraisal Portal</span
-          >
-        </a>
-        <div class="flex items-center space-x-6 rtl:space-x-reverse">
-          <a action="/" method="POST" class="text-sm text-white hover:underline"
-            >Logout</a
-          >
+    <nav class="navbar">
+      <div class="container">
+        <div class="logo-container">
+          <img src="../static/logo-removebg-preview.png" class="navbar-logo">
+          <h2 class="navbar-title">SVCE Faculty Appraisal Portal</h2>
         </div>
+        <div class="navbar-content">
+          <span class="logout-link">Log Out</span>
+        </div>
+        <button class="navbar-toggle">&#9776;</button>
       </div>
     </nav>
     <div class="carousel-section">

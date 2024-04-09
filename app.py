@@ -1,5 +1,7 @@
 # app.py (Flask Backend)
-
+import pytesseract
+from PIL import Image
+import os
 from flask import Flask, render_template, request, jsonify,send_file
 import csv
 from pymongo import MongoClient
@@ -11,7 +13,7 @@ def val():
 db = client['Credit']  
 collection = db['Scores']  
 import openpyxl
-workbook = openpyxl.load_workbook("appraisal.xlsx")
+workbook = openpyxl.load_workbook("appraisals.xlsx")
 worksheet = workbook.active
 filter = {"name": "abi"}
 
@@ -223,6 +225,32 @@ def evesubmit():
 
 @app.route('/eventssubmit', methods=['POST'])
 def attended():
+    
+
+    # Path to your image file
+   
+    if 'certificate' in request.files:
+        certificate = request.files['certificate']
+        if certificate.filename != '':
+            # Save the uploaded file to a folder
+            upload_folder = 'uploads'
+            if not os.path.exists(upload_folder):
+                os.makedirs(upload_folder)
+            
+            certificate.save(os.path.join(upload_folder, certificate.filename))
+            certificate_path = os.path.join(upload_folder, certificate.filename)
+            print(f"Certificate saved at: {certificate_path}")
+              # Replace with your image file path
+
+    # Load the image
+            img = Image.open(certificate_path)
+
+            # Perform OCR on the image
+            extracted_text = pytesseract.image_to_string(img)
+
+            # Print the extracted text
+            print("Extracted Text:")
+            print(extracted_text)
     selected_option = request.form['eventType']
     print(selected_option)
     publisherName = request.form.get('instituteName')

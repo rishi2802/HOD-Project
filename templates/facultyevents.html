@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Faculty attended events</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Faculty attended events</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+
+      body {
+        font-family: Poppins, sans-serif;
+        background: linear-gradient(to bottom, #2E3192 , #1BFFFF);
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
 
     .container {
       background-color: #fff;
@@ -29,34 +31,47 @@
       margin-bottom: 20px;
     }
 
-    select,
-    input[type="text"],
-    input[type="date"],
-    button[type="submit"],
-    input[type="file"] {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box;
-    }
+      select,
+      input[type="text"],
+      input[type="date"],
+      button[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-family: Poppins;
+      }
 
     .error {
       color: red;
       font-size: 0.8em;
     }
 
-    button[type="submit"] {
-      background-color: #4caf50;
-      color: white;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    button[type="submit"]:hover {
-      background-color: #45a049;
-    }
+      button[type="submit"] {
+        background-color: #4caf50;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+     
+      .home{
+        background-color: #4caf50;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-family: Poppins;
+      }
+      button[type="submit"]:hover {
+        background-color: #45a049;
+      }
 
     #workshopFields,
     #glFields,
@@ -108,8 +123,44 @@
         <input type="file" id="certificate" name="certificate" accept="image/*" />
       </div>
 
-      <button type="submit">Submit</button>
-    </form>
-  </div>
-</body>
+        <button type="submit">Submit</button>
+        <button class="home" href="/">&larr;  Go Back</button>
+      </form>
+    </div>
+        
+      </form>
+    </div>
+
+    <script>
+      function showFields() {
+        var eventType = document.getElementById("eventType").value;
+        var workshopFields = document.getElementById("workshopFields");
+        var glFields = document.getElementById("glFields");
+        var fdpFields = document.getElementById("fdpFields");
+        var seminarFields = document.getElementById("seminarFields");
+
+        if (eventType === "workshop") {
+          workshopFields.style.display = "block";
+          glFields.style.display = "none";
+          fdpFields.style.display = "none";
+          seminarFields.style.display = "none";
+        } else if (eventType === "gl") {
+          workshopFields.style.display = "none";
+          glFields.style.display = "block";
+          fdpFields.style.display = "none";
+          seminarFields.style.display = "none";
+        } else if (eventType === "fdp") {
+          workshopFields.style.display = "none";
+          glFields.style.display = "none";
+          fdpFields.style.display = "block";
+          seminarFields.style.display = "none";
+        } else if (eventType === "seminar") {
+          workshopFields.style.display = "none";
+          glFields.style.display = "none";
+          fdpFields.style.display = "none";
+          seminarFields.style.display = "block";
+        }
+      }
+    </script>
+  </body>
 </html>

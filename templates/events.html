@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Faculty Organized Events</title>
     <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+
       body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
+        font-family: Poppins, sans-serif;
+        background: linear-gradient(to bottom, #2E3192 , #1BFFFF);
         margin: 0;
         padding: 0;
         display: flex;
@@ -40,11 +42,13 @@
         border: 1px solid #ccc;
         border-radius: 4px;
         box-sizing: border-box;
+        font-family: Poppins;
       }
 
       .error {
         color: red;
         font-size: 0.8em;
+        font-family: Poppins;
       }
 
       button[type="submit"] {
@@ -52,15 +56,31 @@
         color: white;
         cursor: pointer;
         transition: background-color 0.3s;
+        font-family: Poppins;
       }
 
       button[type="submit"]:hover {
         background-color: #45a049;
+        font-family: Poppins;
       }
 
       #instituteFields,
       #certificationFields {
         display: block;
+      }
+
+      .home{
+        background-color: #4caf50;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-family: Poppins;
       }
     </style>
   </head>
@@ -112,6 +132,8 @@
         
 
         <button type="submit">Submit</button>
+        <button class="home" href="/">&larr;  Go Back</button>
+
       </form>
     </div>
 

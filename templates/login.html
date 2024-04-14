@@ -13,153 +13,279 @@
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
 
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: "Poppins", sans-serif;
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(to bottom, #2E3192 , #1BFFFF);
+}
+
+
+.carousel-section {
+  text-align: center;
+  justify-content: center;
+  justify-items: center;
+  width: 100%; 
+  height: 100%;
+  margin: 0 auto;
+  padding: 80px 20px; 
+  padding-top: 80px;
+  background-color: transparent;
+  min-height: calc(100vh - 190px); 
+  padding-bottom: 20px;
+  
+}
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 10px; 
+  background-color: transparent;
+}
+
+.card {
+  flex: 1 1 calc(25% - 20px); 
+  margin: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+  height: 200px;
+  background-color: #fff;
+  border-radius: 8px;
+  font: 1em ;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 700;
+}
+
+@media (max-width: 1200px) {
+  .card {
+      flex-basis: calc(33.33% - 20px); /* Each card takes up 33.33% of the container width on smaller screens */
+  }
+}
+
+@media (max-width: 992px) {
+  .card {
+      flex-basis: calc(50% - 20px); /* Each card takes up 50% of the container width on even smaller screens */
+  }
+}
+
+@media (max-width: 576px) {
+  .card {
+      flex-basis: calc(100% - 20px); /* Each card takes up 100% of the container width on the smallest screens */
+  }
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.card h3 {
+    color: rgb(60, 83, 231);
+}
+
+.navbar {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .card img {
+    max-width: 100%;
+    max-height: 150px; 
+    object-fit: cover;
+  }
+  
+  .botao {
+    width: 125px;
+    height: 45px;
+    border-radius: 20px;
+    border: none;
+    box-shadow: 1px 1px rgba(107, 221, 215, 0.37);
+    padding: 5px 10px;
+    background: rgb(47,93,197);
+    background: linear-gradient(160deg, rgba(47,93,197,1) 0%, rgba(46,86,194,1) 5%, rgba(47,93,197,1) 11%, rgba(59,190,230,1) 57%, rgba(0,212,255,1) 71%);
+    color: #fff;
+    font-family: Roboto, sans-serif;
+    font-weight: 505;
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+    filter: drop-shadow(0 0 10px rgba(59, 190, 230, 0.568));
+    transition: .5s linear;
+  }
+  
+  .botao .mysvg {
+    display: none;
+  }
+  
+  .botao:hover {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    transition: .5s linear;
+  }
+  
+  .botao:hover .texto {
+    display: none;
+  }
+  
+  .botao:hover .mysvg {
+    display: inline;
+  }
+  
+  .botao:hover::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    width: 100%;
+    height: 100%;
+    border: 3.5px solid transparent;
+    border-top: 3.5px solid #fff;
+    border-right: 3.5px solid #fff;
+    border-radius: 50%;
+    animation: animateC 2s linear infinite;
+  }
+  
+  @keyframes animateC {
+    0% {
+      transform: rotate(0deg);
     }
-      
-      .background {
-        background: linear-gradient(to bottom, #3498db, #7f8c8d);  
-        background-size: cover;
-        background-blend-mode: darken;
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        z-index: -1;
-        filter: blur(5px);
-        min-height: 800px;
-      
-      }
-      
-      .container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        width: 500px;
-        margin: 10vh auto;
-        background: transparent;
-        box-shadow: 0 0 15px rgb(255, 255, 255);
-        border-radius: 25px;
-      }
-      h2 {
-        font-size: 30px;
-      }
-      
-      form {
-        padding: 10px;
-        display: flex;
-        flex-direction: column;
-        width: 85%;
-      }
-      .form-item {
-        display: flex;
-        width: 90%;
-        background: transparent;
-        margin: 10px auto;
-        border-radius: 15px;
-        align-items: center;
-        border-bottom: 1px solid rgb(82, 81, 81);
-      }
-      .form-item:hover {
-        border: 1px solid rgb(82, 81, 81);
-      }
-      input {
-        background: transparent;
-        width: 80%;
-        height: 30px;
-        outline: none;
-        border: none;
-        margin: auto;
-        color: white;
-        font-size: 17px;
-      }
-      
-      span {
-        user-select: none;
-        margin: 5px;
-        color: rgb(172, 172, 172);
-        background: rgba(85, 81, 81, 0.637);
-        padding: 5px;
-        border-radius: 18px;
-      }
-      button[type="submit"] {
-        width: 180px;
-        font-size: 20px;
-        margin: 10px auto;
-        padding: 8px;
-        background: rgba(122, 123, 116, 0.72);
-        border: none;
-        color: white;
-      }
-      button[type="submit"]:hover {
-        background: rgba(222, 236, 34, 0.678);
-      }
-      p:first-of-type {
-        margin: 0;
-      }
-      .options {
-        display: flex;
-        margin: 10px auto;
-        justify-content: center;
-        flex-wrap: wrap;
-      }
-      button {
-        font-size: 18px;
-        padding: 5px 16px;
-        margin: 5px 15px;
-        width: 180px;
-        background: transparent;
-        color: white;
-        cursor: pointer;
-        transition: all 0.7s ease;
-      }
-      .fb:hover {
-        background: rgba(55, 53, 207, 0.637);
-        border: none;
-        box-shadow: 0 0 2px rgba(55, 53, 207, 0.637);
-      }
-      .gl:hover {
-        background: rgba(207, 53, 53, 0.671);
-        border: none;
-        box-shadow: 0 0 2px rgba(207, 53, 53, 0.671);
-      }
-      
-      p {
-        font-size: 18px;
-        margin: 5px;
-      }
-      a {
-        color: white;
-      }
-      a:hover {
-        color: grey;
-      }
-      
-      @media screen and (max-width: 550px) {
-        .container {
-          width: 90%;
-        }
-      }
-      
+  
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .butt{
+    padding-top: 40px;
+    padding-bottom: 11px;
+  }
+  
+  .navbar {
+    background-color: #050868;
+    color: white; 
+    padding: 10px 0;
+  
+  }
+  
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1900px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .logo-container {
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+  }
+  
+  .navbar-logo {
+    width: 50px; 
+    height: auto; 
+    margin-right: 10px; 
+  }
+  
+  .navbar-title {
+    margin: 0;
+    font-size: 1.2em;
+  }
+  
+  .navbar-content {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logout-link {
+    color: white;
+    text-decoration: none;
+    padding-right: 80px;
+  }
+  
+  /* Responsive styles */
+  @media (min-width: 769px) { /* Adjusted media query */
+    .navbar-toggle {
+      display: none;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .navbar-content {
+      display: none;
+    }
+  
+    .navbar-toggle {
+      display: block;
+    }
+  }
+  
+  /* Hamburger icon styles */
+  .navbar-toggle {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 1.5em;
+    cursor: pointer;
+    padding: 5px;
+  }
+
+  .form-items
+  {
+    margin-top: 2%;
+    background-color: white;
+    height: 70%;
+    width: 40%;
+    padding: 20px;
+    border-radius: 20px;
+  }
+  .form-item{
+    padding: 20px;
+  }    
+  input{
+    width: 50%;
+    height: 30px;
+  }
+  button{
+    width: 40%;
+    height: 40px;
+    background-color:#050868 ;
+    color: white;
+    border-radius: 10px;
+  }
   </style>
 
 </head>
 
 <body>
-  
-
-  <!-- for background -->
-  <div class="background"></div>
+  <nav class="navbar">
+    <div class="container">
+      <div class="logo-container">
+        <img src="../static/logo-removebg-preview.png" class="navbar-logo">
+        <h2 class="navbar-title">SVCE Faculty Appraisal Portal</h2>
+      </div>
+     
+      <button class="navbar-toggle">&#9776;</button>
+    </div>
+  </nav>
   <!-- for form container -->
-  <div class="container">
-    <h2>Login</h2>
+  <div class="carousel-section">
+    
+  <center><div class="form-items">
     <form action="/card" method="POST">
 
       <div class="form-item">
+        <h2>Login</h2>
         <span class="material-icons-outlined">
           account_circle
         </span>
@@ -172,10 +298,20 @@
         </span>
         <input type="password" name="password" id="pass" placeholder="Password" required>
       </div>
-
-      <button type="submit">LOGIN</button>
+      <div class="form-item">
+        <span class="material-icons-outlined">
+          class
+        </span>
+        <input type="password" name="password" id="pass" placeholder="Department" required>
+      </div>
+      <div class="form-item">
+        <button type="submit">LOGIN</button>
+      </div>
+      
 
     </form>
+  </div></center>
+    
   </div>
 </body>
 

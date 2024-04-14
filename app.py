@@ -13,7 +13,7 @@ def val():
 db = client['Credit']  
 collection = db['Scores']  
 import openpyxl
-workbook = openpyxl.load_workbook("appraisals.xlsx")
+workbook = openpyxl.load_workbook("appraisal.xlsx")
 worksheet = workbook.active
 filter = {"name": "abi"}
 
